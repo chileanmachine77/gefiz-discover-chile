@@ -2,41 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Gefiz Travels Design System - Colors inspired by Chilean landscapes and brand identity */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    /* Brand Colors - Gefiz Travels */
+    --brand-orange: 14 82% 53%; /* #E85E27 */
+    --brand-orange-dark: 14 75% 44%; /* #C94F20 */
+    --brand-teal: 174 44% 29%; /* #2D6B5F */
+    --brand-teal-light: 174 44% 35%;
+    
+    /* Background System */
+    --background: 210 20% 98%; /* #F8FAFC */
+    --background-alt: 0 0% 100%; /* #FFFFFF */
+    --background-dark: 220 13% 7%; /* #111111 */
+    
+    /* Text System */
+    --foreground: 222 84% 5%; /* #0F172A */
+    --foreground-muted: 215 16% 47%; /* #64748B */
+    --foreground-light: 0 0% 100%;
+    
+    /* Component Colors */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --card-foreground: 222 84% 5%;
+    --card-border: 220 13% 91%;
+    
+    --primary: 14 82% 53%; /* Brand orange */
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 14 75% 44%;
+    
+    --secondary: 174 44% 29%; /* Brand teal */
+    --secondary-foreground: 0 0% 100%;
+    --secondary-hover: 174 44% 35%;
+    
+    --accent: 210 20% 98%;
+    --accent-foreground: 222 84% 5%;
+    
+    --muted: 220 13% 95%;
+    --muted-foreground: 215 16% 47%;
+    
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 14 82% 53%;
+    
+    /* Design System Tokens */
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -94,12 +104,114 @@ All colors MUST be HSL.
   }
 }
 
+    /* Custom Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--brand-orange)) 0%, hsl(var(--brand-teal)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--background-alt)) 0%, hsl(var(--accent)) 100%);
+    --gradient-overlay: linear-gradient(to bottom, transparent 0%, hsl(0 0% 0% / 0.7) 100%);
+    
+    /* Shadows */
+    --shadow-card: 0 4px 6px -1px hsl(var(--foreground) / 0.1), 0 2px 4px -1px hsl(var(--foreground) / 0.06);
+    --shadow-card-hover: 0 20px 25px -5px hsl(var(--foreground) / 0.1), 0 10px 10px -5px hsl(var(--foreground) / 0.04);
+    --shadow-hero: 0 25px 50px -12px hsl(var(--brand-orange) / 0.25);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease-out;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary-hover));
+  }
+}
+
+@layer components {
+  /* Hero Button Variants */
+  .btn-hero {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-4 rounded-xl font-semibold text-lg;
+  }
+  
+  .btn-hero-outline {
+    @apply border-2 border-white text-white hover:bg-white hover:text-primary transition-all duration-300 px-8 py-4 rounded-xl font-semibold text-lg backdrop-blur-sm;
+  }
+  
+  /* Card Styles */
+  .card-tour {
+    @apply bg-card border border-card-border rounded-xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1;
+  }
+  
+  .card-destination {
+    @apply relative overflow-hidden rounded-xl group cursor-pointer;
+  }
+  
+  .card-destination::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10 transition-opacity duration-300;
+  }
+  
+  .card-destination:hover::before {
+    @apply from-black/40 via-black/10;
+  }
+  
+  /* Text Gradients */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--brand-orange)), hsl(var(--brand-teal)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Animation Classes */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
