@@ -140,7 +140,12 @@
 @layer components {
   /* Hero Button Variants */
   .btn-hero {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-4 rounded-xl font-semibold text-lg;
+    @apply bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-4 rounded-xl font-semibold text-lg;
+    background: hsl(var(--primary));
+  }
+  
+  .btn-hero:hover {
+    background: hsl(var(--primary-hover));
   }
   
   .btn-hero-outline {
@@ -149,7 +154,12 @@
   
   /* Card Styles */
   .card-tour {
-    @apply bg-card border border-card-border rounded-xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1;
+    @apply bg-card border border-card-border rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1;
+    box-shadow: var(--shadow-card);
+  }
+  
+  .card-tour:hover {
+    box-shadow: var(--shadow-card-hover);
   }
   
   .card-destination {
