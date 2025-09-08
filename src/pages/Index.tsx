@@ -4,7 +4,7 @@ import PopularTours from '@/components/PopularTours';
 import Destinations from '@/components/Destinations';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import Testimonials from '@/components/Testimonials';
-import Blog from '@/components/Blog';
+
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -18,7 +18,7 @@ const Index = () => {
         <Destinations />
         <WhyChooseUs />
         <Testimonials />
-        <Blog />
+
         <Contact />
       </main>
       <Footer />

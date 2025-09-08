@@ -11,8 +11,8 @@ const WhyChooseUs = () => {
     {
       icon: Star,
       title: "Experiencia en Turismo",
-      description: "Más de 15 años conectando viajeros con los destinos más hermosos de Chile, con guías expertos certificados.",
-      stats: "15+ años"
+      description: "Más de 8 años conectando viajeros con los destinos más hermosos de Chile, con guías expertos certificados.",
+      stats: "8+ años"
     },
     {
       icon: Users,

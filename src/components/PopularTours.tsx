@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Clock, Users, Star, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import valparaisoImage from '@/assets/valparaiso.jpg';
 import vineyardImage from '@/assets/vineyard.jpg';
 import mountainsImage from '@/assets/mountains.jpg';
@@ -10,79 +11,84 @@ const PopularTours = () => {
   const tours = [
     {
       id: 1,
-      title: "Viña del Mar y Valparaíso",
-      description: "Descubre las joyas del Pacífico: la elegante Viña del Mar y el colorido puerto de Valparaíso.",
-      image: valparaisoImage,
-      price: "CLP 85.000",
-      originalPrice: "CLP 100.000",
-      duration: "8 horas",
-      groupSize: "Hasta 45 personas",
-      rating: 4.8,
-      reviews: 234,
-      highlights: ["Jardín Botánico", "Casa Pablo Neruda", "Ascensores históricos", "Almuerzo incluido"],
-      badge: "Más Popular"
+      title: "Viña Concha y Toro - Tour Nocturno",
+      description: "Experiencia única nocturna en la viña más famosa de Chile con degustación bajo las estrellas.",
+      image: '/images/tours/vina-concha-toro-nocturno/nocturno-1.jpg',
+      price: "CLP 95.000",
+      duration: "4 horas",
+      groupSize: "Hasta 25 personas",
+      rating: 4.9,
+      reviews: 187,
+      highlights: ["Tour nocturno", "Casillero del Diablo", "Degustación premium", "Cena incluida"],
+      badge: "Más Popular",
+      detailPage: "/tour/vina-concha-toro-nocturno"
     },
     {
       id: 2,
-      title: "Ruta del Vino - Maipo",
-      description: "Experiencia premium en viñedos boutique con cata de vinos y maridaje gourmet.",
-      image: vineyardImage,
-      price: "CLP 120.000",
+      title: "Santiago en las Alturas",
+      description: "Descubre Santiago desde sus miradores más espectaculares con vistas panorámicas únicas.",
+      image: '/images/tours/santiago-en-las-alturas/alturas-2.jpg',
+      price: "CLP 65.000",
       duration: "6 horas",
-      groupSize: "Hasta 20 personas",
-      rating: 4.9,
-      reviews: 156,
-      highlights: ["3 viñedos premium", "Cata dirigida", "Almuerzo maridaje", "Transporte VIP"],
-      badge: "Premium"
+      groupSize: "Hasta 35 personas",
+      rating: 4.8,
+      reviews: 234,
+      highlights: ["Cerro San Cristóbal", "Sky Costanera", "Cerro Santa Lucía", "Almuerzo incluido"],
+      badge: "Premium",
+      detailPage: "/tour/santiago-en-las-alturas"
     },
     {
       id: 3,
-      title: "Nieve en Farellones",
-      description: "Aventura invernal en la cordillera con actividades en la nieve y almuerzo de montaña.",
-      image: mountainsImage,
-      price: "CLP 95.000",
-      duration: "8 horas",
-      groupSize: "Hasta 35 personas",
+      title: "City Tour Santiago",
+      description: "Recorrido completo por los lugares más emblemáticos e históricos de la capital chilena.",
+      image: '/images/tours/city-tour-santiago/city-4.jpg',
+      price: "CLP 45.000",
+      duration: "4 horas",
+      groupSize: "Hasta 45 personas",
       rating: 4.7,
-      reviews: 189,
-      highlights: ["Actividades en nieve", "Equipo incluido", "Almuerzo caliente", "Vistas panorámicas"]
+      reviews: 312,
+      highlights: ["Palacio La Moneda", "Plaza de Armas", "Mercado Central", "Barrio Bellavista"],
+      detailPage: "/tour/city-tour-santiago"
     },
     {
       id: 4,
-      title: "Cajón del Maipo Adventure",
-      description: "Explora la naturaleza salvaje del Cajón del Maipo con termas y paisajes únicos.",
-      image: cajonMaipoImage,
-      price: "CLP 75.000",
-      duration: "10 horas",
-      groupSize: "Hasta 30 personas",
+      title: "Viña del Mar y Valparaíso",
+      description: "Descubre las joyas del Pacífico: la elegante Viña del Mar y el colorido puerto de Valparaíso.",
+      image: '/images/tours/vina-del-mar-valparaiso/vina-valpo-5.jpg',
+      price: "CLP 85.000",
+      duration: "8 horas",
+      groupSize: "Hasta 45 personas",
       rating: 4.8,
-      reviews: 203,
-      highlights: ["Termas Colina", "Embalse El Yeso", "Trekking opcional", "Fotografía profesional"]
+      reviews: 289,
+      highlights: ["Jardín Botánico", "Casa Pablo Neruda", "Ascensores históricos", "Almuerzo incluido"],
+      detailPage: "/tour/valparaiso-vina-vinedo"
     },
     {
       id: 5,
-      title: "Santiago Colonial + Cerro San Cristóbal",
-      description: "Recorre la historia de Santiago desde el centro histórico hasta las alturas del San Cristóbal.",
-      image: valparaisoImage,
-      price: "CLP 55.000",
+      title: "Viña Santa Rita",
+      description: "Visita la histórica Viña Santa Rita con degustación de vinos y recorrido por sus jardines.",
+      image: '/images/tours/vina-santa-rita/santa-rita-2.jpg',
+      price: "CLP 75.000",
       duration: "5 horas",
-      groupSize: "Hasta 50 personas",
-      rating: 4.6,
-      reviews: 145,
-      highlights: ["Palacio La Moneda", "Plaza de Armas", "Funicular", "Vista panorámica"]
+      groupSize: "Hasta 30 personas",
+      rating: 4.8,
+      reviews: 156,
+      highlights: ["Museo Andino", "Degustación de vinos", "Jardines históricos", "Casa patronal"],
+      detailPage: "/tour/vina-santa-rita"
     },
     {
       id: 6,
-      title: "Tour Gastronómico Mercados",
-      description: "Experimenta los sabores auténticos de Chile en mercados tradicionales y picadas locales.",
-      image: cajonMaipoImage,
+      title: "Viña Concha y Toro",
+      description: "Tour clásico por la viña más reconocida de Chile con visita al famoso Casillero del Diablo.",
+      image: '/images/tours/vina-concha-toro/concha-toro-1.jpg',
       price: "CLP 65.000",
       duration: "4 horas",
-      groupSize: "Hasta 15 personas",
+      groupSize: "Hasta 40 personas",
       rating: 4.9,
-      reviews: 98,
-      highlights: ["Mercado Central", "Degustaciones", "Productos locales", "Guía gastronómico"],
-      badge: "Nuevo"
+      reviews: 423,
+      highlights: ["Casillero del Diablo", "Degustación de vinos", "Viñedos históricos", "Transporte incluido"],
+      badge: "Clásico",
+      detailPage: "/tour/vina-concha-toro"
     }
   ];
 
@@ -116,7 +122,7 @@ const PopularTours = () => {
                     {tour.badge}
                   </Badge>
                 )}
-                {tour.originalPrice && (
+                {'originalPrice' in tour && tour.originalPrice && (
                   <Badge className="absolute top-4 right-4 bg-destructive text-destructive-foreground font-semibold">
                     Oferta
                   </Badge>
@@ -170,15 +176,23 @@ const PopularTours = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <span className="text-2xl font-bold text-primary">{tour.price}</span>
-                    {tour.originalPrice && (
+                    {'originalPrice' in tour && (tour as any).originalPrice && (
                       <span className="text-sm text-foreground-muted line-through">
-                        {tour.originalPrice}
+                        {(tour as any).originalPrice}
                       </span>
                     )}
                   </div>
-                  <Button className="bg-primary hover:bg-primary-hover text-primary-foreground px-6 py-2 rounded-lg font-semibold">
-                    Ver Más
-                  </Button>
+                  {tour.detailPage ? (
+                    <Link to={tour.detailPage}>
+                      <Button className="bg-primary hover:bg-primary-hover text-primary-foreground px-6 py-2 rounded-lg font-semibold">
+                        Ver Más
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Button className="bg-primary hover:bg-primary-hover text-primary-foreground px-6 py-2 rounded-lg font-semibold">
+                      Ver Más
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
@@ -187,9 +201,11 @@ const PopularTours = () => {
 
         {/* View All Button */}
         <div className="text-center mt-12">
-          <Button className="bg-secondary hover:bg-secondary-hover text-secondary-foreground px-8 py-3 rounded-xl font-semibold text-lg">
-            Ver Todos los Tours
-          </Button>
+          <Link to="/todos-los-tours">
+            <Button className="bg-secondary hover:bg-secondary-hover text-secondary-foreground px-8 py-3 rounded-xl font-semibold text-lg">
+              Ver Todos los Tours
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

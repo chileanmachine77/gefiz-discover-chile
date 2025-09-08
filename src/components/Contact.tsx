@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from 'lucide-react';
+import InteractiveMap from './InteractiveMap';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,31 +17,59 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    const webhookUrl = '/api/15qa9qkou77m13dyyu64st5z8mqezaip';
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log('Form data sent successfully!');
+        alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
+        // Reset form after successful submission
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          message: ''
+        });
+      } else {
+        console.error('Failed to send form data.');
+        alert('Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo más tarde.');
+      }
+    } catch (error) {
+      console.error('Error sending form data:', error);
+      alert('Hubo un error al enviar tu mensaje. Por favor, contacta con nosotros directamente.');
+    }
   };
 
   const contactInfo = [
     {
       icon: Phone,
       title: "Teléfono",
-      info: "+56 2 1234-5678",
-      link: "tel:+56212345678",
+      info: "+56966435647",
+      link: "tel:+56966435647",
       description: "Lunes a Viernes 8:00 - 20:00"
     },
     {
       icon: Mail,
       title: "Correo Electrónico",
-      info: "contacto@gefiztravels.com",
-      link: "mailto:contacto@gefiztravels.com",
+      info: "gefiz.spa@gmail.com",
+      link: "mailto:gefiz.spa@gmail.com",
       description: "Respuesta en 24 horas"
     },
     {
       icon: MapPin,
       title: "Ubicación",
-      info: "Providencia 123, Santiago",
+      info: "Av. Armando Cortínez Ote. 1704, Pudahuel, Región Metropolitana",
       link: "#",
       description: "Región Metropolitana, Chile"
     },
@@ -111,7 +140,7 @@ const Contact = () => {
                 </div>
                 <div className="flex-1">
                   <h4 className="font-semibold text-green-900 mb-1">WhatsApp</h4>
-                  <p className="text-green-700 mb-2">+56 9 8765-4321</p>
+                  <p className="text-green-700 mb-2">+56966435647</p>
                   <Button className="bg-green-500 hover:bg-green-600 text-white">
                     Chatear en WhatsApp
                   </Button>
@@ -119,17 +148,31 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Map Placeholder */}
-            <div className="bg-card border border-card-border rounded-xl overflow-hidden h-64">
-              <div className="w-full h-full bg-accent flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <p className="text-foreground-muted">Mapa de Ubicación</p>
-                  <p className="text-sm text-foreground-muted mt-2">
-                    Providencia 123, Santiago
-                  </p>
+            {/* Interactive Map */}
+            <div className="bg-card border border-card-border rounded-xl overflow-hidden">
+              <div className="p-4 border-b border-card-border">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-semibold text-foreground flex items-center">
+                      <MapPin className="w-5 h-5 text-primary mr-2" />
+                      Nuestra Ubicación
+                    </h4>
+                    <p className="text-sm text-foreground-muted mt-1">
+                      Av. Armando Cortínez Ote. 1704, Pudahuel, Región Metropolitana
+                    </p>
+                  </div>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=-33.3969306,-70.7936148"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-primary hover:bg-primary-hover text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2"
+                  >
+                    <MapPin className="w-4 h-4" />
+                    <span>Ver en Google Maps</span>
+                  </a>
                 </div>
               </div>
+              <InteractiveMap />
             </div>
           </div>
 
@@ -175,7 +218,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 border border-card-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    placeholder="tu@email.com"
+                    placeholder="gefiz.spa@gmail.com"
                   />
                 </div>
               </div>
@@ -193,7 +236,7 @@ const Contact = () => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-card-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    placeholder="+56 9 1234-5678"
+                    placeholder="+56966435647"
                   />
                 </div>
                 <div>
