@@ -9,7 +9,7 @@ const GefizLogo: React.FC<GefizLogoProps> = ({ size = 40, className = "" }) => {
   return (
     <img
       src="/logo-hero.png"
-      alt="Gefiz Travels Logo"
+      alt="Gefiz Travel Logo"
       width={size}
       height={size}
       className={`${className} object-contain`}

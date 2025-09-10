@@ -45,7 +45,7 @@ const Header = () => {
           <Link to="/" className="flex items-center space-x-3">
             <GefizLogo size={64} className="flex-shrink-0" />
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Gefiz Travels</h1>
+              <h1 className="text-2xl font-bold text-foreground">Gefiz Travel</h1>
               <p className="text-xs text-foreground-muted">Turismo & Transporte</p>
             </div>
           </Link>
