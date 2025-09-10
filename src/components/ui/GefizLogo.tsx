@@ -8,7 +8,7 @@ interface GefizLogoProps {
 const GefizLogo: React.FC<GefizLogoProps> = ({ size = 40, className = "" }) => {
   return (
     <img
-      src="/gefiz-logo.png"
+      src="/logo-hero.png"
       alt="Gefiz Travels Logo"
       width={size}
       height={size}
