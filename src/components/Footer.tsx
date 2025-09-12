@@ -41,7 +41,7 @@ const Footer = () => {
             <div className="flex items-center space-x-3 mb-6">
               <GefizLogo size={64} className="flex-shrink-0" />
               <div>
-                <h3 className="text-xl font-bold">Gefiz Travels</h3>
+                <h3 className="text-xl font-bold">Gefiz Travel</h3>
                 <p className="text-sm text-white/70">Turismo & Transporte</p>
               </div>
             </div>
@@ -74,7 +74,7 @@ const Footer = () => {
             {/* Social Links */}
             <div className="flex items-center space-x-3">
               <a
-                href="https://www.instagram.com/gefiztravelschile?igsh=aHA2YmxzNmxseHVl&utm_source=qr"
+                href="https://www.instagram.com/gefiztravelchile?igsh=aHA2YmxzNmxseHVl&utm_source=qr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors group"
@@ -83,12 +83,12 @@ const Footer = () => {
                 <Instagram className="w-5 h-5 text-white/80 group-hover:text-white" />
               </a>
               <a 
-                href="https://www.instagram.com/gefiztravelschile?igsh=aHA2YmxzNmxseHVl&utm_source=qr"
+                href="https://www.instagram.com/gefiztravelchile?igsh=aHA2YmxzNmxseHVl&utm_source=qr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/80 hover:text-primary transition-colors font-medium"
               >
-                @gefiztravelschile
+                @gefiztravelchile
               </a>
             </div>
           </div>
@@ -198,7 +198,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-white/60 text-sm">
-              © {currentYear} Gefiz Travels. Todos los derechos reservados.
+              © {currentYear} Gefiz Travel. Todos los derechos reservados.
             </div>
             
             <div className="flex items-center space-x-6 text-sm text-white/60">
