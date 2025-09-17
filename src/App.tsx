@@ -36,6 +36,7 @@ import QuienesSomos from './pages/QuienesSomos';
 import Traslados from './pages/Traslados';
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import { Analytics } from "@vercel/analytics/react";
 
 const queryClient = new QueryClient();
 
@@ -45,7 +46,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <ScrollToTop />
+                <ScrollToTop />
+        <Analytics />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/vinedos" element={<Vinedos />} />
