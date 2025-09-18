@@ -19,7 +19,7 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const webhookUrl = '/api/15qa9qkou77m13dyyu64st5z8mqezaip';
+    const webhookUrl = 'https://submit-form.com/YOUR_FORM_ID';
 
     try {
       const response = await fetch(webhookUrl, {
