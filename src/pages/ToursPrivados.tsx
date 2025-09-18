@@ -51,7 +51,7 @@ const ToursPrivados = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const webhookUrl = '/api/7r1kkhd7fnc3x4n9bv23fj2caisd2cfz';
+    const webhookUrl = 'https://hook.us2.make.com/7r1kkhd7fnc3x4n9bv23fj2caisd2cfz';
 
     try {
       const response = await fetch(webhookUrl, {
