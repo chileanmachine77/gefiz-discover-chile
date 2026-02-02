@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Instagram, Award, CreditCard } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, Facebook, Award, CreditCard } from 'lucide-react';
 import GefizLogo from '@/components/ui/GefizLogo';
 
 const Footer = () => {
@@ -72,16 +72,27 @@ const Footer = () => {
             </div>
 
             {/* Social Links */}
-            <div className="flex items-center space-x-3">
-              <a
-                href="https://www.instagram.com/gefiztravelchile?igsh=aHA2YmxzNmxseHVl&utm_source=qr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-primary transition-colors group"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-5 h-5 text-white/80 group-hover:text-white" />
-              </a>
+            <div className="flex flex-col space-y-3">
+              <div className="flex items-center space-x-3">
+                <a
+                  href="https://www.instagram.com/gefiztravelchile?igsh=aHA2YmxzNmxseHVl&utm_source=qr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-pink-600 transition-colors group"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-5 h-5 text-white/80 group-hover:text-white" />
+                </a>
+                <a 
+                  href="https://www.facebook.com/profile.php?id=61586323407102&mibextid=wwXIfr&rdid=FCfvALi2UUTvv7d6&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1BQJdA3UFd%2F%3Fmibextid%3DwwXIfr%26ref%3D1#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors group"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-5 h-5 text-white/80 group-hover:text-white" />
+                </a>
+              </div>
               <a 
                 href="https://www.instagram.com/gefiztravelchile?igsh=aHA2YmxzNmxseHVl&utm_source=qr"
                 target="_blank"
