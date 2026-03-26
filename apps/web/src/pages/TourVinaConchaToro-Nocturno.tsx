@@ -16,7 +16,9 @@ import {
   Wine,
   Grape,
   TreePine,
-  Moon
+  Moon,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -27,6 +29,7 @@ const TourVinaConchaToro_Nocturno = () => {
   const [selectedTime, setSelectedTime] = useState('');
   const [groupSize, setGroupSize] = useState('');
   const [selectedImage, setSelectedImage] = useState(0);
+  const [expandedFaq, setExpandedFaq] = useState<string | null>(null);
 
   const tourImages = [
     { src: '/images/tours/vina-concha-toro-nocturno/nocturno-1.jpg', alt: 'Tour Nocturno Concha y Toro - Ambiente nocturno', title: 'Ambiente Nocturno' },
@@ -39,103 +42,19 @@ const TourVinaConchaToro_Nocturno = () => {
 
   const tourHighlights = [
     "Tour nocturno exclusivo por viñedos históricos",
-    "Bodegas subterráneas iluminadas por velas",
-    "Degustación de 5 vinos premium seleccionados",
-    "Experiencia íntima del Casillero del Diablo nocturno",
-    "Cena gourmet maridada con vinos de la casa",
-    "Ambiente romántico y mágico bajo las estrellas",
+    "Degustación de 3 vinos premium seleccionados y copa de regalo",
+    "Cena de 3 tiempos",
+    "Seguro de transporte",
     "Guía sommelier especializado en tours nocturnos",
     "Transporte nocturno seguro desde Santiago"
   ];
 
-  const itinerary = [
-    {
-      time: "18:30",
-      activity: "Salida desde Santiago",
-      description: "Recogida en hoteles del sector oriente y centro de Santiago"
-    },
-    {
-      time: "19:15",
-      activity: "Llegada a Viña Concha y Toro",
-      description: "Bienvenida nocturna con copa de espumante"
-    },
-    {
-      time: "19:30",
-      activity: "Recorrido por Jardines Nocturnos",
-      description: "Caminata por jardines iluminados y casa patronal"
-    },
-    {
-      time: "20:00",
-      activity: "Viñedos bajo las Estrellas",
-      description: "Recorrido nocturno por viñedos con explicación del terroir"
-    },
-    {
-      time: "20:45",
-      activity: "Bodegas a la Luz de Velas",
-      description: "Visita íntima a bodegas subterráneas iluminadas por velas"
-    },
-    {
-      time: "21:30",
-      activity: "Casillero del Diablo Nocturno",
-      description: "Experiencia mística en la bodega legendaria"
-    },
-    {
-      time: "22:00",
-      activity: "Cena Gourmet Maridada",
-      description: "Cena de 3 tiempos con maridaje de 5 vinos premium"
-    },
-    {
-      time: "23:30",
-      activity: "Cata Final bajo las Estrellas",
-      description: "Degustación final en terraza con vista a los viñedos"
-    },
-    {
-      time: "00:00",
-      activity: "Regreso a Santiago",
-      description: "Traslado nocturno seguro con llegada aproximada a las 00:45"
-    }
-  ];
-
-  const includedServices = [
-    "Transporte nocturno ida y vuelta desde Santiago",
-    "Guía sommelier especializado en tours nocturnos",
-    "Entrada exclusiva a Viña Concha y Toro",
-    "Recorrido por jardines y casa patronal iluminados",
-    "Visita nocturna a viñedos históricos",
-    "Tour por bodegas subterráneas con velas",
-    "Experiencia nocturna del Casillero del Diablo",
-    "Cena gourmet de 3 tiempos",
-    "Degustación de 5 vinos premium seleccionados",
-    "Copa de bienvenida con espumante",
-    "Seguro de accidentes personales"
-  ];
-
-  const recommendations = [
-    {
-      title: "Ropa Abrigada",
-      description: "Llevar chaqueta o abrigo, las noches pueden ser frías"
-    },
-    {
-      title: "Calzado Cómodo",
-      description: "Zapatos cerrados y cómodos para caminar en la oscuridad"
-    },
-    {
-      title: "Cámara con Flash",
-      description: "Permitido tomar fotos con flash en áreas designadas"
-    },
-    {
-      title: "Edad Mínima",
-      description: "Solo mayores de 18 años pueden participar en este tour"
-    },
-    {
-      title: "Reserva Anticipada",
-      description: "Tour exclusivo con cupos limitados, reservar con anticipación"
-    },
-    {
-      title: "Documentos",
-      description: "Llevar cédula de identidad o pasaporte para verificar edad"
-    }
-  ];
+  
+  
+  
+  const toggleFaq = (faqId: string) => {
+    setExpandedFaq(expandedFaq === faqId ? null : faqId);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -181,7 +100,7 @@ const TourVinaConchaToro_Nocturno = () => {
           <div className="flex flex-wrap justify-center gap-4 text-sm">
             <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
               <Clock className="w-4 h-4" />
-              <span>6 horas</span>
+              <span>5 horas</span>
             </div>
             <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
               <Users className="w-4 h-4" />
@@ -193,7 +112,7 @@ const TourVinaConchaToro_Nocturno = () => {
             </div>
             <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
               <Wine className="w-4 h-4" />
-              <span>5 Degustaciones</span>
+              <span>3 Degustaciones</span>
             </div>
             <div className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
               <Coffee className="w-4 h-4" />
@@ -283,123 +202,203 @@ const TourVinaConchaToro_Nocturno = () => {
               </div>
             </section>
 
-            {/* Itinerary */}
+            {/* Operación */}
             <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Itinerario</h2>
-              <div className="space-y-4">
-                {itinerary.map((item, index) => (
-                  <div key={index} className="flex space-x-4 p-4 bg-card border border-card-border rounded-lg">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-semibold">
-                        {item.time}
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">{item.activity}</h3>
-                      <p className="text-foreground-muted text-sm">{item.description}</p>
-                    </div>
+              <h2 className="text-3xl font-bold text-foreground mb-6">Operación</h2>
+              <div className="bg-card border border-card-border rounded-lg p-6 space-y-4">
+                <div className="flex items-start space-x-3">
+                  <Clock className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-foreground">Horario de Salida</h3>
+                    <p className="text-foreground-muted">A partir de las 16:00 hrs</p>
                   </div>
-                ))}
+                </div>
+                <div className="flex items-start space-x-3">
+                  <Calendar className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-foreground">Duración</h3>
+                    <p className="text-foreground-muted">Tour de 5 horas aprox. (desde la salida del hotel hasta su regreso)</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <Calendar className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-foreground">Operación</h3>
+                    <p className="text-foreground-muted">De Martes a Sábado.</p>
+                  </div>
+                </div>
               </div>
             </section>
 
-            {/* Included Services */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Servicios Incluidos</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {includedServices.map((service, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-foreground-muted">{service}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Recommendations */}
+            {/* Recomendaciones Generales */}
             <section>
               <h2 className="text-3xl font-bold text-foreground mb-6">Recomendaciones Generales</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {recommendations.map((rec, index) => (
-                  <div key={index} className="bg-card border border-card-border rounded-lg p-4">
-                    <h3 className="font-semibold text-foreground mb-2">{rec.title}</h3>
-                    <p className="text-foreground-muted text-sm">{rec.description}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Related Tours */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">También te Recomendamos...</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/vina-concha-toro'}>
-                  <img src={valparaisoImage} alt="Viña Concha y Toro Diurno" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">Viña Concha y Toro - Tour Diurno</h3>
-                    <p className="text-foreground-muted text-sm">La experiencia clásica de día en la viña más famosa de Chile</p>
-                  </div>
-                </div>
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/vina-santa-rita'}>
-                  <img src={valparaisoImage} alt="Viña Santa Rita" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">Viña Santa Rita</h3>
-                    <p className="text-foreground-muted text-sm">Otra experiencia vinícola premium en el Valle del Maipo</p>
-                  </div>
-                </div>
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/ruta-vino-valle-maipo'}>
-                  <img src="/images/tours/ruta-vino-valle-maipo/maipo-4.jpg" alt="Ruta del Vino Valle del Maipo" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">Ruta del Vino Valle del Maipo</h3>
-                    <p className="text-foreground-muted text-sm">Descubre múltiples viñas en el valle más prestigioso</p>
-                  </div>
-                </div>
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/vinedo-haras-pirque'}>
-                  <img src={valparaisoImage} alt="Viñedo Haras de Pirque" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">Viñedo Haras de Pirque</h3>
-                    <p className="text-foreground-muted text-sm">Experiencia boutique en viñedo exclusivo</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Policies and Conditions */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Políticas y Condiciones</h2>
               <div className="bg-card border border-card-border rounded-lg p-6">
-                <div className="space-y-4 text-foreground-muted">
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Cancelaciones</h3>
-                    <p className="text-sm">Cancelación gratuita hasta 48 horas antes del tour nocturno. Cancelaciones con menos de 48 horas tendrán un cargo del 75%.</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">👕</span>
+                    <p className="text-foreground-muted">Viste ropa cómoda</p>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Condiciones Climáticas</h3>
-                    <p className="text-sm">El tour nocturno se realiza solo con buen clima. En caso de lluvia o viento fuerte, se reprogramará sin costo adicional.</p>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">💧</span>
+                    <p className="text-foreground-muted">Lleva agua para hidratarte</p>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Edad Mínima</h3>
-                    <p className="text-sm">Solo mayores de 18 años pueden participar en este tour nocturno debido a las degustaciones de alcohol.</p>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">💵</span>
+                    <p className="text-foreground-muted">Lleva efectivo para souvenirs o comida</p>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Cupos Limitados</h3>
-                    <p className="text-sm">Tour exclusivo con máximo 20 personas por grupo. Se recomienda reservar con al menos 7 días de anticipación.</p>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">⛅</span>
+                    <p className="text-foreground-muted">Verifica las condiciones del clima</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">📷</span>
+                    <p className="text-foreground-muted">Preocúpate de tener cargado tu teléfono y/o cámara</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">⏰</span>
+                    <p className="text-foreground-muted">Sé puntual y sigue las instrucciones del guía</p>
                   </div>
                 </div>
               </div>
             </section>
-          </div>
+
+            {/* Preguntas Frecuentes */}
+            <section>
+              <h2 className="text-3xl font-bold text-foreground mb-6">¿Preguntas Frecuentes?</h2>
+              <div className="space-y-4">
+                {/* Zona de Recogida */}
+                <div className="bg-card border border-card-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq('pickup')}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">Zona de recogida para los tours</span>
+                    {expandedFaq === 'pickup' ? (
+                      <ChevronUp className="w-5 h-5 text-primary" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-primary" />
+                    )}
+                  </button>
+                  {expandedFaq === 'pickup' && (
+                    <div className="px-6 py-4 border-t border-card-border">
+                      <p className="text-foreground-muted">
+                        La recogida se realiza en alojamientos ubicados dentro del eje de las avenidas Alameda – Providencia – Apoquindo (Línea 1 del Metro de Santiago), en las comunas de Santiago Centro, Providencia y Las Condes. Si su alojamiento se encuentra fuera de la zona de recogida, se le asignará un punto de encuentro cercano y seguro.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Confirmación de Servicios */}
+                <div className="bg-card border border-card-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq('confirmation')}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">Confirmación de los servicios</span>
+                    {expandedFaq === 'confirmation' ? (
+                      <ChevronUp className="w-5 h-5 text-primary" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-primary" />
+                    )}
+                  </button>
+                  {expandedFaq === 'confirmation' && (
+                    <div className="px-6 py-4 border-t border-card-border">
+                      <p className="text-foreground-muted">
+                        En la víspera de cada tour se le confirmará por WhatsApp el horario estimado de recogida en su hotel o punto de encuentro.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Política de Cancelación */}
+                <div className="bg-card border border-card-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq('cancellation')}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">Política de cancelación</span>
+                    {expandedFaq === 'cancellation' ? (
+                      <ChevronUp className="w-5 h-5 text-primary" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-primary" />
+                    )}
+                  </button>
+                  {expandedFaq === 'cancellation' && (
+                    <div className="px-6 py-4 border-t border-card-border space-y-3">
+                      <p className="text-foreground-muted">
+                        Para recibir un reembolso total, la cancelación debe solicitarse con al menos 72 horas de anticipación al inicio del servicio.
+                      </p>
+                      <p className="text-foreground-muted">
+                        Si la cancelación se realiza con menos de 72 horas, se cobrará el 100% del valor reservado.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Reprogramación y Reembolsos */}
+                <div className="bg-card border border-card-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq('rescheduling')}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">Reprogramación y reembolsos</span>
+                    {expandedFaq === 'rescheduling' ? (
+                      <ChevronUp className="w-5 h-5 text-primary" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-primary" />
+                    )}
+                  </button>
+                  {expandedFaq === 'rescheduling' && (
+                    <div className="px-6 py-4 border-t border-card-border space-y-3">
+                      <p className="text-foreground-muted">
+                        Los servicios pueden reprogramarse sin costo adicional, solicitándolo con un mínimo de 72 horas de anticipación.
+                      </p>
+                      <p className="text-foreground-muted">
+                        En caso de modificaciones por parte de la agencia, nos pondremos en contacto para coordinar la alternativa.
+                      </p>
+                      <p className="text-foreground-muted">
+                        Los plazos de reembolso pueden variar según el método de pago y las políticas de cada entidad bancaria.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Modificación de Itinerarios */}
+                <div className="bg-card border border-card-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq('itinerary')}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">Modificación de itinerarios</span>
+                    {expandedFaq === 'itinerary' ? (
+                      <ChevronUp className="w-5 h-5 text-primary" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-primary" />
+                    )}
+                  </button>
+                  {expandedFaq === 'itinerary' && (
+                    <div className="px-6 py-4 border-t border-card-border">
+                      <p className="text-foreground-muted">
+                        Nuestros paseos cuentan con paradas establecidas, sin embargo, el itinerario puede sufrir alteraciones debido a condiciones climáticas, tránsito, eventos en la ciudad, cierres de vías o alta afluencia de público.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+
+            
+            
+            
+                      </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
             {/* Booking Form */}
             <div className="bg-card border border-card-border rounded-xl p-6 sticky top-8">
               <div className="text-center mb-6">
-                <div className="text-3xl font-bold text-primary mb-2">CLP 125.000</div>
+                <div className="text-3xl font-bold text-primary mb-2">CLP 174.000</div>
                 <div className="text-foreground-muted">por persona</div>
                 <div className="text-sm text-foreground-muted mt-1">Incluye cena y degustaciones</div>
               </div>
@@ -484,41 +483,7 @@ const TourVinaConchaToro_Nocturno = () => {
               </form>
             </div>
 
-            {/* Quick Info */}
-            <div className="bg-background-alt rounded-xl p-4 mt-6">
-              <h3 className="font-semibold text-foreground mb-3">Información Rápida</h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center space-x-2">
-                  <Clock className="w-4 h-4 text-primary" />
-                  <span className="text-foreground-muted">Duración: 6 horas</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <MapPin className="w-4 h-4 text-primary" />
-                  <span className="text-foreground-muted">Ubicación: Pirque, Santiago</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Car className="w-4 h-4 text-primary" />
-                  <span className="text-foreground-muted">Transporte incluido</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Wine className="w-4 h-4 text-primary" />
-                  <span className="text-foreground-muted">5 degustaciones</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Coffee className="w-4 h-4 text-primary" />
-                  <span className="text-foreground-muted">Cena incluida</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Moon className="w-4 h-4 text-primary" />
-                  <span className="text-foreground-muted">Experiencia nocturna</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Users className="w-4 h-4 text-primary" />
-                  <span className="text-foreground-muted">Solo +18 años</span>
-                </div>
-              </div>
-            </div>
-          </div>
+                      </div>
         </div>
       </div>
 

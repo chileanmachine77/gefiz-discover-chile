@@ -14,7 +14,9 @@ import {
   ChevronRight,
   Check,
   Mountain,
-  TreePine
+  TreePine,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -25,6 +27,11 @@ const TourCordilleraPanoramico = () => {
   const [selectedTime, setSelectedTime] = useState('');
   const [groupSize, setGroupSize] = useState('');
   const [selectedImage, setSelectedImage] = useState(0);
+  const [expandedFaq, setExpandedFaq] = useState<string | null>(null);
+
+  const toggleFaq = (faqId: string) => {
+    setExpandedFaq(expandedFaq === faqId ? null : faqId);
+  };
 
   const tourImages = [
     { src: '/images/tours/cordillera-panoramico/cordillera-1.jpg', alt: 'Cordillera Panorámico - Andes', title: 'Cordillera Andes' },
@@ -37,70 +44,14 @@ const TourCordilleraPanoramico = () => {
   const tourDescription = "Vive una aventura única en la majestuosa Cordillera de los Andes con vistas panorámicas espectaculares. Este tour te lleva a los miradores más impresionantes de la montaña, donde podrás contemplar paisajes andinos de ensueño y experimentar diferentes altitudes y ecosistemas. Recorre pueblos cordilleranos tradicionales, disfruta de un almuerzo panorámico y realiza caminatas ecológicas. Una experiencia perfecta para los amantes de la naturaleza, la fotografía y los paisajes de montaña.";
 
   const tourHighlights = [
-    "Vistas panorámicas espectaculares de la Cordillera de los Andes",
-    "Recorrido por los miradores más impresionantes de la montaña",
-    "Visita a pueblos cordilleranos tradicionales",
-    "Fotografías únicas de paisajes andinos",
-    "Experiencia en diferentes altitudes y ecosistemas",
-    "Avistamiento de fauna andina en su hábitat natural",
-    "Degustación de productos locales de montaña",
-    "Guía especializado en geografía y ecología andina"
+    "Traslado desde / hacia hoteles",
+    "Seguro Transporte de Pasajeros",
+    "Temporada de invierno: parada en rental para arriendo de equipos y ropa de nieve",
+    "Parada sugerida para disfrutar y jugar en la nieve"
   ];
 
-  const itinerary = [
-    {
-      time: "07:30",
-      activity: "Salida desde Santiago",
-      description: "Recogida en hotel y traslado hacia la Cordillera de los Andes"
-    },
-    {
-      time: "09:00",
-      activity: "Primer Mirador",
-      description: "Parada en mirador con vista panorámica del valle de Santiago"
-    },
-    {
-      time: "10:00",
-      activity: "Pueblo Cordillerano",
-      description: "Visita a pueblo tradicional andino y su cultura local"
-    },
-    {
-      time: "11:30",
-      activity: "Mirador de Altura",
-      description: "Ascenso a mirador de gran altura con vistas de 360 grados"
-    },
-    {
-      time: "12:30",
-      activity: "Almuerzo Panorámico",
-      description: "Almuerzo con vista a la cordillera y degustación local"
-    },
-    {
-      time: "14:00",
-      activity: "Caminata Ecológica",
-      description: "Caminata corta por senderos andinos y observación de flora"
-    },
-    {
-      time: "15:30",
-      activity: "Último Mirador",
-      description: "Visita al mirador más espectacular del recorrido"
-    },
-    {
-      time: "16:30",
-      activity: "Regreso a Santiago",
-      description: "Traslado de vuelta con llegada aproximada a las 18:30"
-    }
-  ];
-
-  const includedServices = [
-    "Transporte privado 4x4 durante todo el recorrido",
-    "Guía turístico especializado en montañismo",
-    "Almuerzo panorámico con vista a la cordillera",
-    "Degustación de productos locales de montaña",
-    "Acceso a todos los miradores del recorrido",
-    "Caminata ecológica con guía naturalista",
-    "Seguro de montaña completo",
-    "Agua mineral y snacks energéticos"
-  ];
-
+  
+  
   const recommendations = [
     {
       title: "Ropa de Montaña",
@@ -131,7 +82,7 @@ const TourCordilleraPanoramico = () => {
 • Número de personas: ${groupSize}
 
 *Tour:* Cordillera Panorámico
-*Duración:* 11 horas
+*Duración:* 8 - 9 horas
 *Incluye:* Transporte 4x4, guía especializado, almuerzo panorámico, seguro de montaña
 
 ¡Espero su confirmación!`;
@@ -164,7 +115,7 @@ const TourCordilleraPanoramico = () => {
           <div className="flex flex-wrap justify-center gap-4 text-sm">
             <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
               <Clock className="w-5 h-5 text-primary" />
-              <span>11 horas</span>
+              <span>8 - 9 horas</span>
             </div>
             <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2">
               <Users className="w-5 h-5 text-primary" />
@@ -262,116 +213,196 @@ const TourCordilleraPanoramico = () => {
               </div>
             </section>
 
-            {/* Itinerary */}
+            
+            
+            {/* Operación */}
             <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Itinerario</h2>
-              <div className="space-y-4">
-                {itinerary.map((item, index) => (
-                  <div key={index} className="flex space-x-4 p-4 bg-card border border-card-border rounded-lg">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-semibold">
-                        {item.time}
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">{item.activity}</h3>
-                      <p className="text-foreground-muted text-sm">{item.description}</p>
-                    </div>
+              <h2 className="text-3xl font-bold text-foreground mb-6">Operación</h2>
+              <div className="bg-card border border-card-border rounded-lg p-6 space-y-4">
+                <div className="flex items-start space-x-3">
+                  <Clock className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-foreground">Horario de Salida</h3>
+                    <p className="text-foreground-muted">A partir de las 06:20 hrs</p>
                   </div>
-                ))}
+                </div>
+                <div className="flex items-start space-x-3">
+                  <Calendar className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-foreground">Duración</h3>
+                    <p className="text-foreground-muted">Tour de 8 a 9 horas aprox. (desde la salida del hotel hasta su regreso)</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <Calendar className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-foreground">Operación</h3>
+                    <p className="text-foreground-muted">Todos los días / Sujeto a condiciones climáticas</p>
+                  </div>
+                </div>
               </div>
             </section>
 
-            {/* Included Services */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Servicios Incluidos</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {includedServices.map((service, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-foreground-muted">{service}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Recommendations */}
+            {/* Recomendaciones Generales */}
             <section>
               <h2 className="text-3xl font-bold text-foreground mb-6">Recomendaciones Generales</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {recommendations.map((rec, index) => (
-                  <div key={index} className="bg-card border border-card-border rounded-lg p-4">
-                    <h3 className="font-semibold text-foreground mb-2">{rec.title}</h3>
-                    <p className="text-foreground-muted text-sm">{rec.description}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Related Tours */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">También te Recomendamos...</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/vina-concha-toro'}>
-                  <img src={valparaisoImage} alt="Viña Concha y Toro Diurno" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">Viña Concha y Toro - Tour Diurno</h3>
-                    <p className="text-foreground-muted text-sm">La experiencia clásica de día en la viña más famosa de Chile</p>
-                  </div>
-                </div>
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/vina-santa-rita'}>
-                  <img src={valparaisoImage} alt="Viña Santa Rita" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">Viña Santa Rita</h3>
-                    <p className="text-foreground-muted text-sm">Otra experiencia vinícola premium en el Valle del Maipo</p>
-                  </div>
-                </div>
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/ruta-vino-valle-maipo'}>
-                  <img src="/images/tours/ruta-vino-valle-maipo/maipo-4.jpg" alt="Ruta del Vino Valle del Maipo" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">Ruta del Vino Valle del Maipo</h3>
-                    <p className="text-foreground-muted text-sm">Descubre múltiples viñas en el valle más prestigioso</p>
-                  </div>
-                </div>
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/vinedo-haras-pirque'}>
-                  <img src={valparaisoImage} alt="Viñedo Haras de Pirque" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">Viñedo Haras de Pirque</h3>
-                    <p className="text-foreground-muted text-sm">Experiencia boutique en viñedo exclusivo</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Policies and Conditions */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Políticas y Condiciones</h2>
               <div className="bg-card border border-card-border rounded-lg p-6">
-                <div className="space-y-4 text-foreground-muted">
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Cancelaciones</h3>
-                    <p className="text-sm">Cancelación gratuita hasta 48 horas antes del tour nocturno. Cancelaciones con menos de 48 horas tendrán un cargo del 75%.</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">👕</span>
+                    <p className="text-foreground-muted">Viste ropa cómoda</p>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Condiciones Climáticas</h3>
-                    <p className="text-sm">El tour nocturno se realiza solo con buen clima. En caso de lluvia o viento fuerte, se reprogramará sin costo adicional.</p>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">💧</span>
+                    <p className="text-foreground-muted">Lleva agua para hidratarte</p>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Edad Mínima</h3>
-                    <p className="text-sm">Solo mayores de 18 años pueden participar en este tour nocturno debido a las degustaciones de alcohol.</p>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">💵</span>
+                    <p className="text-foreground-muted">Lleva efectivo para souvenirs o comida</p>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Cupos Limitados</h3>
-                    <p className="text-sm">Tour exclusivo con máximo 20 personas por grupo. Se recomienda reservar con al menos 7 días de anticipación.</p>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">⛅</span>
+                    <p className="text-foreground-muted">Verifica las condiciones del clima</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">📷</span>
+                    <p className="text-foreground-muted">Preocúpate de tener cargado tu teléfono y/o cámara</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">⏰</span>
+                    <p className="text-foreground-muted">Sé puntual y sigue las instrucciones del guía</p>
                   </div>
                 </div>
               </div>
             </section>
-          </div>
+
+            {/* Preguntas Frecuentes */}
+            <section>
+              <h2 className="text-3xl font-bold text-foreground mb-6">¿Preguntas Frecuentes?</h2>
+              <div className="space-y-4">
+                {/* Zona de Recogida */}
+                <div className="bg-card border border-card-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq('pickup')}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">Zona de recogida para los tours</span>
+                    {expandedFaq === 'pickup' ? (
+                      <ChevronUp className="w-5 h-5 text-primary" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-primary" />
+                    )}
+                  </button>
+                  {expandedFaq === 'pickup' && (
+                    <div className="px-6 py-4 border-t border-card-border">
+                      <p className="text-foreground-muted">
+                        La recogida se realiza en alojamientos ubicados dentro del eje de las avenidas Alameda – Providencia – Apoquindo (Línea 1 del Metro de Santiago), en las comunas de Santiago Centro, Providencia y Las Condes. Si su alojamiento se encuentra fuera de la zona de recogida, se le asignará un punto de encuentro cercano y seguro.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Confirmación de Servicios */}
+                <div className="bg-card border border-card-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq('confirmation')}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">Confirmación de los servicios</span>
+                    {expandedFaq === 'confirmation' ? (
+                      <ChevronUp className="w-5 h-5 text-primary" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-primary" />
+                    )}
+                  </button>
+                  {expandedFaq === 'confirmation' && (
+                    <div className="px-6 py-4 border-t border-card-border">
+                      <p className="text-foreground-muted">
+                        En la víspera de cada tour se le confirmará por WhatsApp el horario estimado de recogida en su hotel o punto de encuentro.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Política de Cancelación */}
+                <div className="bg-card border border-card-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq('cancellation')}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">Política de cancelación</span>
+                    {expandedFaq === 'cancellation' ? (
+                      <ChevronUp className="w-5 h-5 text-primary" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-primary" />
+                    )}
+                  </button>
+                  {expandedFaq === 'cancellation' && (
+                    <div className="px-6 py-4 border-t border-card-border space-y-3">
+                      <p className="text-foreground-muted">
+                        Para recibir un reembolso total, la cancelación debe solicitarse con al menos 72 horas de anticipación al inicio del servicio.
+                      </p>
+                      <p className="text-foreground-muted">
+                        Si la cancelación se realiza con menos de 72 horas, se cobrará el 100% del valor reservado.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Reprogramación y Reembolsos */}
+                <div className="bg-card border border-card-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq('rescheduling')}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">Reprogramación y reembolsos</span>
+                    {expandedFaq === 'rescheduling' ? (
+                      <ChevronUp className="w-5 h-5 text-primary" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-primary" />
+                    )}
+                  </button>
+                  {expandedFaq === 'rescheduling' && (
+                    <div className="px-6 py-4 border-t border-card-border space-y-3">
+                      <p className="text-foreground-muted">
+                        Los servicios pueden reprogramarse sin costo adicional, solicitándolo con un mínimo de 72 horas de anticipación.
+                      </p>
+                      <p className="text-foreground-muted">
+                        En caso de modificaciones por parte de la agencia, nos pondremos en contacto para coordinar la alternativa.
+                      </p>
+                      <p className="text-foreground-muted">
+                        Los plazos de reembolso pueden variar según el método de pago y las políticas de cada entidad bancaria.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Modificación de Itinerarios */}
+                <div className="bg-card border border-card-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq('itinerary')}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">Modificación de itinerarios</span>
+                    {expandedFaq === 'itinerary' ? (
+                      <ChevronUp className="w-5 h-5 text-primary" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-primary" />
+                    )}
+                  </button>
+                  {expandedFaq === 'itinerary' && (
+                    <div className="px-6 py-4 border-t border-card-border">
+                      <p className="text-foreground-muted">
+                        Nuestros paseos cuentan con paradas establecidas, sin embargo, el itinerario puede sufrir alteraciones debido a condiciones climáticas, tránsito, eventos en la ciudad, cierres de vías o alta afluencia de público.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+
+            
+                      </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
@@ -469,7 +500,7 @@ const TourCordilleraPanoramico = () => {
               <div className="space-y-2 text-sm">
                 <div className="flex items-center space-x-2">
                   <Clock className="w-4 h-4 text-primary" />
-                  <span className="text-foreground-muted">Duración: 11 horas</span>
+                  <span className="text-foreground-muted">Duración: 8 - 9 horas</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <MapPin className="w-4 h-4 text-primary" />
