@@ -28,6 +28,8 @@ const TourCordilleraPanoramico = () => {
   const [groupSize, setGroupSize] = useState('');
   const [selectedImage, setSelectedImage] = useState(0);
   const [expandedFaq, setExpandedFaq] = useState<string | null>(null);
+  const [adults, setAdults] = useState('');
+  const [children, setChildren] = useState('');
 
   const toggleFaq = (faqId: string) => {
     setExpandedFaq(expandedFaq === faqId ? null : faqId);
@@ -79,7 +81,8 @@ const TourCordilleraPanoramico = () => {
 *Detalles de la Reserva:*
 • Fecha: ${selectedDate}
 • Hora: ${selectedTime}
-• Número de personas: ${groupSize}
+• Adultos: ${adults || '0'}
+• Niños: ${children || '0'}
 
 *Tour:* Cordillera Panorámico
 *Duración:* 8 - 9 horas
@@ -409,9 +412,19 @@ const TourCordilleraPanoramico = () => {
             {/* Booking Form */}
             <div className="bg-card border border-card-border rounded-xl p-6 sticky top-8">
               <div className="text-center mb-6">
-                <div className="text-3xl font-bold text-primary mb-2">CLP 185.000</div>
-                <div className="text-foreground-muted">por persona</div>
-                <div className="text-sm text-foreground-muted mt-1">Incluye transporte 4x4, almuerzo y guía especializado</div>
+                <div className="text-3xl font-bold text-primary mb-2">🎟️ Valores:</div>
+                <div className="space-y-2">
+                  <div className="text-xl font-semibold text-foreground">
+                    Adulto: <span className="text-primary">CLP 44.000</span>
+                  </div>
+                  <div className="text-lg text-foreground-muted">
+                    Niños: <span className="text-primary">CLP 22.000</span>
+                  </div>
+                  <div className="text-sm text-foreground-muted">
+                    Niños (menores de 3 años): <span className="text-primary">Gratis</span>
+                  </div>
+                </div>
+                <div className="text-sm text-foreground-muted mt-3">Incluye transporte 4x4, almuerzo y guía especializado</div>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -446,25 +459,45 @@ const TourCordilleraPanoramico = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="group-size" className="block text-sm font-medium text-foreground mb-2">
-                    Número de Personas
+                  <label htmlFor="adults" className="block text-sm font-medium text-foreground mb-2">
+                    Número de Adultos
                   </label>
                   <select
-                    id="group-size"
-                    value={groupSize}
-                    onChange={(e) => setGroupSize(e.target.value)}
+                    id="adults"
+                    value={adults}
+                    onChange={(e) => setAdults(e.target.value)}
                     className="w-full px-4 py-3 border border-card-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                     required
                   >
-                    <option value="">Seleccionar cantidad</option>
-                    <option value="2">2 personas</option>
-                    <option value="4">4 personas</option>
-                    <option value="6">6 personas</option>
-                    <option value="8">8 personas</option>
-                    <option value="10">10 personas</option>
-                    <option value="12">12 personas</option>
-                    <option value="15">15 personas</option>
-                    <option value="20">20 personas</option>
+                    <option value="">Seleccionar adultos</option>
+                    <option value="1">1 adulto</option>
+                    <option value="2">2 adultos</option>
+                    <option value="3">3 adultos</option>
+                    <option value="4">4 adultos</option>
+                    <option value="5">5 adultos</option>
+                    <option value="6">6 adultos</option>
+                    <option value="7">7 adultos</option>
+                    <option value="8">8 adultos</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="children" className="block text-sm font-medium text-foreground mb-2">
+                    Número de Niños (3-12 años)
+                  </label>
+                  <select
+                    id="children"
+                    value={children}
+                    onChange={(e) => setChildren(e.target.value)}
+                    className="w-full px-4 py-3 border border-card-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  >
+                    <option value="">Sin niños</option>
+                    <option value="1">1 niño</option>
+                    <option value="2">2 niños</option>
+                    <option value="3">3 niños</option>
+                    <option value="4">4 niños</option>
+                    <option value="5">5 niños</option>
+                    <option value="6">6 niños</option>
                   </select>
                 </div>
 

@@ -15,7 +15,9 @@ import {
   Check,
   Wine,
   Grape,
-  Home
+  Home,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -25,6 +27,12 @@ const TourMarquesCasaConcha = () => {
   const [selectedTime, setSelectedTime] = useState('');
   const [groupSize, setGroupSize] = useState('');
   const [selectedImage, setSelectedImage] = useState(0);
+  const [adults, setAdults] = useState('');
+  const [expandedFaq, setExpandedFaq] = useState<string | null>(null);
+
+  const toggleFaq = (faqId: string) => {
+    setExpandedFaq(expandedFaq === faqId ? null : faqId);
+  };
 
   const tourImages = [
     {
@@ -253,75 +261,264 @@ const TourMarquesCasaConcha = () => {
               </div>
             </div>
 
-            {/* Highlights */}
-            <section className="mt-12">
-              <h2 className="text-2xl font-bold text-foreground mb-6">Lo que Incluye esta Experiencia</h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                {tourHighlights.map((highlight, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground-muted">{highlight}</span>
+            {/* Tour Information */}
+            <section className="mt-12 mb-8">
+              <div className="text-center mb-6">
+                <div className="text-3xl font-bold text-primary mb-2">🎟️ Valores:</div>
+                <div className="space-y-2">
+                  <div className="text-xl font-semibold text-foreground">
+                    Adulto: <span className="text-primary">CLP 119.000</span>
                   </div>
-                ))}
+                  <div className="text-lg text-foreground-muted">
+                    Niños: <span className="text-primary">No Disponible</span>
+                  </div>
+                </div>
               </div>
-            </section>
 
-            {/* Itinerary */}
-            <section className="mt-12">
-              <h2 className="text-2xl font-bold text-foreground mb-6">Itinerario Detallado</h2>
-              <div className="space-y-4">
-                {itinerary.map((item, index) => (
-                  <div key={index} className="flex space-x-4 p-4 bg-background-alt rounded-lg">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-semibold">
-                        {item.time}
-                      </div>
-                    </div>
+              <div className="bg-card border border-card-border rounded-lg p-6 space-y-4 mb-6">
+                <div className="text-xl font-bold text-foreground mb-4">🚌 Operación:</div>
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <Clock className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold text-foreground mb-1">{item.activity}</h3>
-                      <p className="text-foreground-muted text-sm">{item.description}</p>
+                      <h3 className="font-semibold text-foreground">Horario de Salida</h3>
+                      <p className="text-foreground-muted">horario PM a confirmar</p>
                     </div>
                   </div>
-                ))}
+                  <div className="flex items-start space-x-3">
+                    <Clock className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold text-foreground">Duración</h3>
+                      <p className="text-foreground-muted">Tour de 06 horas aprox. (desde la salida del hotel hasta su regreso)</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Calendar className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold text-foreground">Operación</h3>
+                      <p className="text-foreground-muted">todos los días (Mínimo 4 pasajeros).</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-card border border-card-border rounded-lg p-6 space-y-4 mb-6">
+                <div className="text-xl font-bold text-foreground mb-4">👍 Incluye:</div>
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-foreground-muted">Traslado desde / hacia hoteles</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-foreground-muted">Seguro Transporte de Pasajeros</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-foreground-muted">Guía Bilíngüe</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-foreground-muted">Degustación de 3 vinos durante el recorrido</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-foreground-muted">Degustación exclusiva de cuatro variedades de la línea Super Premium Marques de Casa Concha, acompañada de finos quesos</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-foreground-muted">Copa de Regalo</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-card border border-card-border rounded-lg p-6 space-y-4 mb-6">
+                <div className="text-xl font-bold text-foreground mb-4">👎 No incluye:</div>
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <span className="text-xl">❌</span>
+                    <span className="text-foreground-muted">Almuerzo</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-xl">❌</span>
+                    <span className="text-foreground-muted">Propinas opcionales</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-card border border-card-border rounded-lg p-6 space-y-4 mb-6">
+                <div className="text-xl font-bold text-foreground mb-4">Recomendaciones Generales:</div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">👕</span>
+                    <p className="text-foreground-muted">Viste ropa cómoda</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">💧</span>
+                    <p className="text-foreground-muted">Lleva agua para hidratarte</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">💵</span>
+                    <p className="text-foreground-muted">Lleva efectivo para souvenirs o comida</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">🌞</span>
+                    <p className="text-foreground-muted">Protégete del sol</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">⛅</span>
+                    <p className="text-foreground-muted">Verifica las condiciones del clima</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">📷</span>
+                    <p className="text-foreground-muted">Preocúpate de tener cargado tu teléfono y/o cámara</p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <span className="text-2xl">⏰</span>
+                    <p className="text-foreground-muted">Sé puntual y sigue las instrucciones del guía</p>
+                  </div>
+                </div>
               </div>
             </section>
 
-            {/* Services */}
-            <section className="mt-12">
-              <h2 className="text-2xl font-bold text-foreground mb-6">Servicios Incluidos</h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                {includedServices.map((service, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-foreground-muted">{service}</span>
-                  </div>
-                ))}
+            {/* Preguntas Frecuentes */}
+            <section>
+              <h2 className="text-3xl font-bold text-foreground mb-6">¿Preguntas Frecuentes?</h2>
+              <div className="space-y-4">
+                {/* Zona de Recogida */}
+                <div className="bg-card border border-card-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq('pickup')}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">Zona de recogida para los tours</span>
+                    {expandedFaq === 'pickup' ? (
+                      <ChevronUp className="w-5 h-5 text-primary" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-primary" />
+                    )}
+                  </button>
+                  {expandedFaq === 'pickup' && (
+                    <div className="px-6 py-4 border-t border-card-border">
+                      <p className="text-foreground-muted">
+                        La recogida se realiza en alojamientos ubicados dentro del eje de las avenidas Alameda – Providencia – Apoquindo (Línea 1 del Metro de Santiago), en las comunas de Santiago Centro, Providencia y Las Condes. Si su alojamiento se encuentra fuera de la zona de recogida, se le asignará un punto de encuentro cercano y seguro.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Confirmación de Servicios */}
+                <div className="bg-card border border-card-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq('confirmation')}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">Confirmación de los servicios</span>
+                    {expandedFaq === 'confirmation' ? (
+                      <ChevronUp className="w-5 h-5 text-primary" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-primary" />
+                    )}
+                  </button>
+                  {expandedFaq === 'confirmation' && (
+                    <div className="px-6 py-4 border-t border-card-border">
+                      <p className="text-foreground-muted">
+                        En la víspera de cada tour se le confirmará por WhatsApp el horario estimado de recogida en su hotel o punto de encuentro.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Política de Cancelación */}
+                <div className="bg-card border border-card-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq('cancellation')}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">Política de cancelación</span>
+                    {expandedFaq === 'cancellation' ? (
+                      <ChevronUp className="w-5 h-5 text-primary" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-primary" />
+                    )}
+                  </button>
+                  {expandedFaq === 'cancellation' && (
+                    <div className="px-6 py-4 border-t border-card-border space-y-3">
+                      <p className="text-foreground-muted">
+                        Para recibir un reembolso total, la cancelación debe solicitarse con al menos 72 horas de anticipación al inicio del servicio.
+                      </p>
+                      <p className="text-foreground-muted">
+                        Si la cancelación se realiza con menos de 72 horas, se cobrará el 100% del valor reservado.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Reprogramación y Reembolsos */}
+                <div className="bg-card border border-card-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq('rescheduling')}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">Reprogramación y reembolsos</span>
+                    {expandedFaq === 'rescheduling' ? (
+                      <ChevronUp className="w-5 h-5 text-primary" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-primary" />
+                    )}
+                  </button>
+                  {expandedFaq === 'rescheduling' && (
+                    <div className="px-6 py-4 border-t border-card-border space-y-3">
+                      <p className="text-foreground-muted">
+                        Los servicios pueden reprogramarse sin costo adicional, solicitándolo con un mínimo de 72 horas de anticipación.
+                      </p>
+                      <p className="text-foreground-muted">
+                        En caso de modificaciones por parte de la agencia, nos pondremos en contacto para coordinar la alternativa.
+                      </p>
+                      <p className="text-foreground-muted">
+                        Los plazos de reembolso pueden variar según el método de pago y las políticas de cada entidad bancaria.
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Modificación de Itinerarios */}
+                <div className="bg-card border border-card-border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFaq('itinerary')}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">Modificación de itinerarios</span>
+                    {expandedFaq === 'itinerary' ? (
+                      <ChevronUp className="w-5 h-5 text-primary" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-primary" />
+                    )}
+                  </button>
+                  {expandedFaq === 'itinerary' && (
+                    <div className="px-6 py-4 border-t border-card-border">
+                      <p className="text-foreground-muted">
+                        Nuestros paseos cuentan con paradas establecidas, sin embargo, el itinerario puede sufrir alteraciones debido a condiciones climáticas, tránsito, eventos en la ciudad, cierres de vías o alta afluencia de público.
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
             </section>
 
-            {/* Recommendations */}
-            <section className="mt-12">
-              <h2 className="text-2xl font-bold text-foreground mb-6">Recomendaciones</h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                {recommendations.map((rec, index) => (
-                  <div key={index} className="bg-background-alt rounded-lg p-4">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <Camera className="w-5 h-5 text-primary" />
-                      <h3 className="font-semibold text-foreground">{rec.title}</h3>
-                    </div>
-                    <p className="text-foreground-muted text-sm">{rec.description}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
           </div>
-
-          {/* Booking Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-card border border-card-border rounded-xl p-6 sticky top-6">
               <div className="text-center mb-6">
-                <div className="text-3xl font-bold text-primary mb-2">CLP 65.000</div>
-                <p className="text-foreground-muted">por persona</p>
+                <div className="text-3xl font-bold text-primary mb-2">🎟️ Valores:</div>
+                <div className="space-y-2">
+                  <div className="text-xl font-semibold text-foreground">
+                    Adulto: <span className="text-primary">CLP 119.000</span>
+                  </div>
+                  <div className="text-lg text-foreground-muted">
+                    Niños: <span className="text-primary">No Disponible</span>
+                  </div>
+                </div>
               </div>
 
               <form className="space-y-4">
@@ -339,35 +536,22 @@ const TourMarquesCasaConcha = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
-                    Horario Preferido
+                    Número de Adultos
                   </label>
                   <select
-                    value={selectedTime}
-                    onChange={(e) => setSelectedTime(e.target.value)}
-                    className="w-full px-4 py-3 border border-card-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                  >
-                    <option value="">Seleccionar horario</option>
-                    <option value="09:00">09:00 AM</option>
-                    <option value="10:00">10:00 AM</option>
-                    <option value="11:00">11:00 AM</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Número de Personas
-                  </label>
-                  <select
-                    value={groupSize}
-                    onChange={(e) => setGroupSize(e.target.value)}
+                    value={adults}
+                    onChange={(e) => setAdults(e.target.value)}
                     className="w-full px-4 py-3 border border-card-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   >
                     <option value="">Seleccionar cantidad</option>
-                    <option value="2">2 personas</option>
-                    <option value="4">4 personas</option>
-                    <option value="6">6 personas</option>
-                    <option value="8">8 personas</option>
-                    <option value="10">10+ personas</option>
+                    <option value="1">1 adulto</option>
+                    <option value="2">2 adultos</option>
+                    <option value="3">3 adultos</option>
+                    <option value="4">4 adultos</option>
+                    <option value="5">5 adultos</option>
+                    <option value="6">6 adultos</option>
+                    <option value="7">7 adultos</option>
+                    <option value="8">8 adultos</option>
                   </select>
                 </div>
 
