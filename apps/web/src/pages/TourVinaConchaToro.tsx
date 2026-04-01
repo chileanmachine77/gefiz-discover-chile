@@ -15,7 +15,9 @@ import {
   Check,
   Wine,
   Grape,
-  TreePine
+  TreePine,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -26,6 +28,13 @@ const TourVinaConchaToro = () => {
   const [selectedTime, setSelectedTime] = useState('');
   const [groupSize, setGroupSize] = useState('');
   const [selectedImage, setSelectedImage] = useState(0);
+  const [adults, setAdults] = useState('');
+  const [children, setChildren] = useState('');
+  const [expandedFaq, setExpandedFaq] = useState<string | null>(null);
+
+  const toggleFaq = (faqId: string) => {
+    setExpandedFaq(expandedFaq === faqId ? null : faqId);
+  };
 
   const tourImages = [
     { src: '/images/tours/vina-concha-toro/concha-toro-1.jpg', alt: 'Viña Concha y Toro - Entrada principal', title: 'Entrada Principal' },
@@ -237,179 +246,161 @@ const TourVinaConchaToro = () => {
               </div>
             </section>
 
-            {/* Tour Highlights */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Lo que incluye</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {tourHighlights.map((highlight, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-foreground-muted">{highlight}</span>
-                  </div>
-                ))}
+            {/* 🎟️ Valores */}
+            <section className="bg-card border border-card-border rounded-xl p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-4">🎟️ Valores</h2>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center p-3 bg-background rounded-lg">
+                  <span className="font-medium text-foreground">Adulto</span>
+                  <span className="text-xl font-bold text-primary">CLP 80.000</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-background rounded-lg">
+                  <span className="font-medium text-foreground">Niños</span>
+                  <span className="text-xl font-bold text-primary">CLP 40.000</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-background rounded-lg">
+                  <span className="font-medium text-foreground">Niños menores de 3 años</span>
+                  <span className="text-xl font-bold text-green-600">Gratis</span>
+                </div>
               </div>
             </section>
 
-            {/* Itinerary */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Itinerario</h2>
+            {/* 🚌 Operación */}
+            <section className="bg-card border border-card-border rounded-xl p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-4">🚌 Operación</h2>
               <div className="space-y-4">
-                {itinerary.map((item, index) => (
-                  <div key={index} className="flex space-x-4 p-4 bg-card border border-card-border rounded-lg">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-semibold">
-                        {item.time}
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">{item.activity}</h3>
-                      <p className="text-foreground-muted text-sm">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Included Services */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Servicios incluidos</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {includedServices.map((service, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-foreground-muted">{service}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Recommendations */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Recomendaciones generales</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {recommendations.map((rec, index) => (
-                  <div key={index} className="bg-card border border-card-border rounded-lg p-4">
-                    <h3 className="font-semibold text-foreground mb-2">{rec.title}</h3>
-                    <p className="text-foreground-muted text-sm">{rec.description}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Related Tours */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">También te Recomendamos...</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/city-tour-santiago'}>
-                  <img src={valparaisoImage} alt="City Tour Santiago" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">City Tour Santiago</h3>
-                    <p className="text-foreground-muted text-sm">Descubre los principales atractivos de la capital chilena</p>
-                  </div>
-                </div>
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/vina-santa-rita'}>
-                  <img src={valparaisoImage} alt="Viña Santa Rita" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">Viña Santa Rita</h3>
-                    <p className="text-foreground-muted text-sm">Otra experiencia vinícola imperdible en el Valle del Maipo</p>
-                  </div>
-                </div>
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/valparaiso-vina-vinedo'}>
-                  <img src="/images/tours/valparaiso-vina-vinedo/valparaiso-2.jpg" alt="Valparaíso y Viñedo" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">Valparaíso, Viña del Mar y Viñedo</h3>
-                    <p className="text-foreground-muted text-sm">Combina costa y vinos en una experiencia única</p>
-                  </div>
-                </div>
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/isla-negra-algarrobo-vinedos'}>
-                  <img src="/images/tours/isla-negra-algarrobo/isla3-1.jpg" alt="Isla Negra y Viñedos" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">Isla Negra, Algarrobo y Viñedos</h3>
-                    <p className="text-foreground-muted text-sm">Visita la casa de Pablo Neruda y disfruta de vinos costeros</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Policies and Conditions */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Políticas y Condiciones</h2>
-              <div className="bg-card border border-card-border rounded-lg p-6">
-                <div className="space-y-4 text-foreground-muted">
+                <div className="flex items-start space-x-3">
+                  <Clock className="w-5 h-5 text-primary mt-1" />
                   <div>
-                    <h3 className="font-semibold text-foreground mb-2">Cancelaciones</h3>
-                    <p className="text-sm">Cancelación gratuita hasta 24 horas antes del tour. Cancelaciones con menos de 24 horas tendrán un cargo del 50%.</p>
+                    <h3 className="font-semibold text-foreground">Horario de Salida</h3>
+                    <p className="text-foreground-muted">A partir de las 13:00 hrs</p>
                   </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <Calendar className="w-5 h-5 text-primary mt-1" />
                   <div>
-                    <h3 className="font-semibold text-foreground mb-2">Condiciones Climáticas</h3>
-                    <p className="text-sm">El tour se realiza con lluvia o sol. En caso de condiciones climáticas extremas, se reprogramará sin costo adicional.</p>
+                    <h3 className="font-semibold text-foreground">Duración</h3>
+                    <p className="text-foreground-muted">Tour de 6 horas aprox. (desde la salida del hotel hasta su regreso)</p>
                   </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <Check className="w-5 h-5 text-primary mt-1" />
                   <div>
-                    <h3 className="font-semibold text-foreground mb-2">Edad Mínima</h3>
-                    <p className="text-sm">Menores de 18 años pueden participar del tour pero no de las degustaciones de vino.</p>
+                    <h3 className="font-semibold text-foreground">Operación</h3>
+                    <p className="text-foreground-muted">Todos los días</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <Users className="w-5 h-5 text-primary mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-foreground">Mínimo de pasajeros</h3>
+                    <p className="text-foreground-muted">2 pasajeros</p>
                   </div>
                 </div>
               </div>
             </section>
 
-            {/* Tour Highlights */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Lo que Incluye</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {tourHighlights.map((highlight, index) => (
-                  <div key={index} className="flex items-start space-x-3 p-4 bg-background-alt rounded-lg">
-                    <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span className="text-foreground-muted">{highlight}</span>
-                  </div>
-                ))}
-              </div>
+            {/* 👍 Incluye */}
+            <section className="bg-card border border-card-border rounded-xl p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-4">👍 Incluye</h2>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-3">
+                  <Check className="w-5 h-5 text-green-500 mt-0.5" />
+                  <span className="text-foreground-muted">Traslado desde / hacia hoteles ubicados en Santiago Centro y Providencia</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <Check className="w-5 h-5 text-green-500 mt-0.5" />
+                  <span className="text-foreground-muted">Seguro Transporte de Pasajeros (incluye cobertura de COVID-19)</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <Check className="w-5 h-5 text-green-500 mt-0.5" />
+                  <span className="text-foreground-muted">Guía Bilingüe (tour en portugués o español)</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <Check className="w-5 h-5 text-green-500 mt-0.5" />
+                  <span className="text-foreground-muted">Degustación de vinos y Copa de Regalo</span>
+                </li>
+              </ul>
             </section>
 
-            {/* Itinerary */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Itinerario Detallado</h2>
+            {/* 👎 No incluye */}
+            <section className="bg-card border border-card-border rounded-xl p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-4">👎 No incluye</h2>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-3">
+                  <span className="text-red-500 mt-0.5">✗</span>
+                  <span className="text-foreground-muted">Almuerzo</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-red-500 mt-0.5">✗</span>
+                  <span className="text-foreground-muted">Propinas opcionales</span>
+                </li>
+              </ul>
+            </section>
+
+            {/* 👕 Recomendaciones Generales */}
+            <section className="bg-card border border-card-border rounded-xl p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-4">👕 Recomendaciones Generales</h2>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-3">
+                  <span className="text-xl">👕</span>
+                  <span className="text-foreground-muted">Viste ropa cómoda</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-xl">💧</span>
+                  <span className="text-foreground-muted">Lleva agua para hidratarte</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-xl">💵</span>
+                  <span className="text-foreground-muted">Lleva efectivo para souvenirs o comida</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-xl">🌞</span>
+                  <span className="text-foreground-muted">Protégete del sol</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-xl">⛅</span>
+                  <span className="text-foreground-muted">Verifica las condiciones del clima</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-xl">📷</span>
+                  <span className="text-foreground-muted">Preocúpate de tener cargado tu teléfono y/o cámara</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-xl">⏰</span>
+                  <span className="text-foreground-muted">Sé puntual y sigue las instrucciones del guía</span>
+                </li>
+              </ul>
+            </section>
+
+            {/* ❓ Preguntas Frecuentes */}
+            <section className="bg-card border border-card-border rounded-xl p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-6">❓ Preguntas Frecuentes</h2>
               <div className="space-y-4">
-                {itinerary.map((item, index) => (
-                  <div key={index} className="flex space-x-4 p-6 bg-background-alt rounded-xl">
-                    <div className="flex-shrink-0">
-                      <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold">
-                        {item.time}
+                {[
+                  { id: 'faq1', question: 'Zona de recogida para los tours', answer: 'La recogida se realiza en alojamientos ubicados dentro del eje de las avenidas Alameda – Providencia – Apoquindo (Línea 1 del Metro de Santiago), en las comunas de Santiago Centro, Providencia y Las Condes. Si su alojamiento se encuentra fuera de la zona de recogida, se le asignará un punto de encuentro cercano y seguro.' },
+                  { id: 'faq2', question: 'Confirmación de los servicios', answer: 'En la víspera de cada tour se le confirmará por WhatsApp el horario estimado de recogida en su hotel o punto de encuentro.' },
+                  { id: 'faq3', question: 'Políticas de Cancelación', answer: 'Para recibir un reembolso total, la cancelación debe solicitarse con al menos 72 horas de anticipación al inicio del servicio. Si la cancelación se realiza con menos de 72 horas, se cobrará el 100% del valor reservado.' },
+                  { id: 'faq4', question: 'Reprogramación y reembolsos', answer: 'Los servicios pueden reprogramarse sin costo adicional, solicitándolo con un mínimo de 72 horas de anticipación. En caso de modificaciones por parte de la agencia, nos pondremos en contacto para coordinar la alternativa. Los plazos de reembolso pueden variar según el método de pago y las políticas de cada entidad bancaria.' },
+                  { id: 'faq5', question: 'Modificaciones en el itinerario', answer: 'Nuestros paseos cuentan con paradas establecidas, sin embargo, el itinerario puede sufrir alteraciones debido a condiciones climáticas, tránsito, eventos en la ciudad, cierres de vías o alta afluencia de público.' }
+                ].map((faq) => (
+                  <div key={faq.id} className="border border-card-border rounded-lg overflow-hidden">
+                    <button
+                      onClick={() => toggleFaq(faq.id)}
+                      className="w-full flex items-center justify-between p-4 text-left hover:bg-background-alt transition-colors"
+                    >
+                      <span className="font-medium text-foreground pr-4">{faq.question}</span>
+                      {expandedFaq === faq.id ? (
+                        <ChevronUp className="w-5 h-5 text-primary flex-shrink-0" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 text-primary flex-shrink-0" />
+                      )}
+                    </button>
+                    {expandedFaq === faq.id && (
+                      <div className="px-4 pb-4">
+                        <p className="text-foreground-muted">{faq.answer}</p>
                       </div>
-                    </div>
-                    <div className="flex-grow">
-                      <h3 className="text-xl font-semibold text-foreground mb-2">{item.activity}</h3>
-                      <p className="text-foreground-muted leading-relaxed">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Included Services */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Servicios Incluidos</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {includedServices.map((service, index) => (
-                  <div key={index} className="flex items-center space-x-3 p-4 bg-background-alt rounded-lg">
-                    <ChevronRight className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="text-foreground-muted">{service}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Recommendations */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Recomendaciones</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {recommendations.map((rec, index) => (
-                  <div key={index} className="p-6 bg-background-alt rounded-xl">
-                    <h3 className="text-lg font-semibold text-foreground mb-3">{rec.title}</h3>
-                    <p className="text-foreground-muted leading-relaxed">{rec.description}</p>
+                    )}
                   </div>
                 ))}
               </div>
@@ -424,12 +415,17 @@ const TourVinaConchaToro = () => {
               {/* Booking Form */}
               <div className="bg-card border border-card-border rounded-xl p-6 shadow-lg">
                 <div className="text-center mb-6">
-                  <div className="text-3xl font-bold text-primary">CLP 45.000</div>
-                  <div className="text-foreground-muted">por persona</div>
-                  <div className="flex items-center justify-center space-x-1 mt-2">
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    <span className="font-medium">4.8</span>
-                    <span className="text-sm text-foreground-muted">(156 reseñas)</span>
+                  <div className="text-3xl font-bold text-primary mb-2">🎟️ Valores:</div>
+                  <div className="space-y-2">
+                    <div className="text-xl font-semibold text-foreground">
+                      Adulto: <span className="text-primary">CLP 80.000</span>
+                    </div>
+                    <div className="text-lg text-foreground-muted">
+                      Niños: <span className="text-primary">CLP 40.000</span>
+                    </div>
+                    <div className="text-base text-foreground-muted">
+                      Niños (menores de 3 años): <span className="text-primary">Gratis</span>
+                    </div>
                   </div>
                 </div>
 
@@ -462,23 +458,46 @@ const TourVinaConchaToro = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Número de Personas
+                    <label htmlFor="adults" className="block text-sm font-medium text-foreground mb-2">
+                      Número de Adultos
                     </label>
                     <select
-                      value={groupSize}
-                      onChange={(e) => setGroupSize(e.target.value)}
+                      id="adults"
+                      value={adults}
+                      onChange={(e) => setAdults(e.target.value)}
+                      className="w-full px-4 py-3 border border-card-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      required
+                    >
+                      <option value="">Seleccionar cantidad</option>
+                      <option value="1">1 adulto</option>
+                      <option value="2">2 adultos</option>
+                      <option value="3">3 adultos</option>
+                      <option value="4">4 adultos</option>
+                      <option value="5">5 adultos</option>
+                      <option value="6">6 adultos</option>
+                      <option value="7">7 adultos</option>
+                      <option value="8">8 adultos</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="children" className="block text-sm font-medium text-foreground mb-2">
+                      Número de Niños
+                    </label>
+                    <select
+                      id="children"
+                      value={children}
+                      onChange={(e) => setChildren(e.target.value)}
                       className="w-full px-4 py-3 border border-card-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                     >
                       <option value="">Seleccionar cantidad</option>
-                      <option value="2">2 personas</option>
-                      <option value="4">4 personas</option>
-                      <option value="6">6 personas</option>
-                      <option value="8">8 personas</option>
-                      <option value="10">10 personas</option>
-                      <option value="15">15 personas</option>
-                      <option value="20">20 personas</option>
-                      <option value="10">10+ personas</option>
+                      <option value="0">Sin niños</option>
+                      <option value="1">1 niño</option>
+                      <option value="2">2 niños</option>
+                      <option value="3">3 niños</option>
+                      <option value="4">4 niños</option>
+                      <option value="5">5 niños</option>
+                      <option value="6">6 niños</option>
                     </select>
                   </div>
 

@@ -16,7 +16,9 @@ import {
   Wine,
   Grape,
   TreePine,
-  Moon
+  Moon,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -27,6 +29,13 @@ const TourVinaValparaiso = () => {
   const [selectedTime, setSelectedTime] = useState('');
   const [groupSize, setGroupSize] = useState('');
   const [selectedImage, setSelectedImage] = useState(0);
+  const [adults, setAdults] = useState('');
+  const [children, setChildren] = useState('');
+  const [expandedFaq, setExpandedFaq] = useState<string | null>(null);
+
+  const toggleFaq = (faqId: string) => {
+    setExpandedFaq(expandedFaq === faqId ? null : faqId);
+  };
 
   const tourImages = [
     { src: '/images/tours/vina-del-mar-valparaiso/vina-valpo-1.jpg', alt: 'Viña del Mar y Valparaíso - Vista panorámica', title: 'Vista Panorámica' },
@@ -244,128 +253,167 @@ const TourVinaValparaiso = () => {
               </div>
             </section>
 
-            {/* Tour Highlights */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Lo que Incluye</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {tourHighlights.map((highlight, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-foreground-muted">{highlight}</span>
-                  </div>
-                ))}
+            {/* 🎟️ Valores */}
+            <section className="bg-card border border-card-border rounded-xl p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-4">🎟️ Valores</h2>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center p-3 bg-background rounded-lg">
+                  <span className="font-medium text-foreground">Adulto</span>
+                  <span className="text-xl font-bold text-primary">CLP 44.000</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-background rounded-lg">
+                  <span className="font-medium text-foreground">Niños</span>
+                  <span className="text-xl font-bold text-primary">CLP 22.000</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-background rounded-lg">
+                  <span className="font-medium text-foreground">Niños menores de 3 años</span>
+                  <span className="text-xl font-bold text-green-600">Gratis</span>
+                </div>
               </div>
             </section>
 
-            {/* Itinerary */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Itinerario</h2>
+            {/* 🚌 Operación */}
+            <section className="bg-card border border-card-border rounded-xl p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-4">🚌 Operación</h2>
               <div className="space-y-4">
-                {itinerary.map((item, index) => (
-                  <div key={index} className="flex space-x-4 p-4 bg-card border border-card-border rounded-lg">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-semibold">
-                        {item.time}
+                <div className="flex items-start space-x-3">
+                  <Clock className="w-5 h-5 text-primary mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-foreground">Horario de Salida</h3>
+                    <p className="text-foreground-muted">A partir de las 07:40 hrs</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <Calendar className="w-5 h-5 text-primary mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-foreground">Duración</h3>
+                    <p className="text-foreground-muted">Tour de 8 a 9 horas aprox. (desde la salida del hotel hasta su regreso)</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <Check className="w-5 h-5 text-primary mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-foreground">Operación</h3>
+                    <p className="text-foreground-muted">Todos los días</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* 👍 Incluye */}
+            <section className="bg-card border border-card-border rounded-xl p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-4">👍 Incluye</h2>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-3">
+                  <Check className="w-5 h-5 text-green-500 mt-0.5" />
+                  <span className="text-foreground-muted">Traslado desde / hacia hoteles</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <Check className="w-5 h-5 text-green-500 mt-0.5" />
+                  <span className="text-foreground-muted">Seguro Transporte de Pasajeros</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <Check className="w-5 h-5 text-green-500 mt-0.5" />
+                  <span className="text-foreground-muted">Guía Bilingüe</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <Check className="w-5 h-5 text-green-500 mt-0.5" />
+                  <span className="text-foreground-muted">Parada en Reloj de Flores</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <Check className="w-5 h-5 text-green-500 mt-0.5" />
+                  <span className="text-foreground-muted">Parada en el Moai del Museo Fonck</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <Check className="w-5 h-5 text-green-500 mt-0.5" />
+                  <span className="text-foreground-muted">Parada en playa de Viña del Mar (20 minutos aprox.)</span>
+                </li>
+              </ul>
+            </section>
+
+            {/* 👎 No incluye */}
+            <section className="bg-card border border-card-border rounded-xl p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-4">👎 No incluye</h2>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-3">
+                  <span className="text-red-500 mt-0.5">✗</span>
+                  <span className="text-foreground-muted">Almuerzo</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-red-500 mt-0.5">✗</span>
+                  <span className="text-foreground-muted">Propinas opcionales</span>
+                </li>
+              </ul>
+            </section>
+
+            {/* 👕 Recomendaciones Generales */}
+            <section className="bg-card border border-card-border rounded-xl p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-4">👕 Recomendaciones Generales</h2>
+              <ul className="space-y-3">
+                <li className="flex items-start space-x-3">
+                  <span className="text-xl">👕</span>
+                  <span className="text-foreground-muted">Viste ropa cómoda</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-xl">💧</span>
+                  <span className="text-foreground-muted">Lleva agua para hidratarte</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-xl">💵</span>
+                  <span className="text-foreground-muted">Lleva efectivo para souvenirs o comida</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-xl">🌞</span>
+                  <span className="text-foreground-muted">Protégete del sol</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-xl">⛅</span>
+                  <span className="text-foreground-muted">Verifica las condiciones del clima</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-xl">📷</span>
+                  <span className="text-foreground-muted">Preocúpate de tener cargado tu teléfono y/o cámara</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <span className="text-xl">⏰</span>
+                  <span className="text-foreground-muted">Sé puntual y sigue las instrucciones del guía</span>
+                </li>
+              </ul>
+            </section>
+
+            {/* ❓ Preguntas Frecuentes */}
+            <section className="bg-card border border-card-border rounded-xl p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-6">❓ Preguntas Frecuentes</h2>
+              <div className="space-y-4">
+                {[
+                  { id: 'faq1', question: '¿En qué zona están ubicados para poder pasar a buscarlos?', answer: 'Estamos ubicados en Santiago Centro y Providencia. El traslado incluye recogida y regreso a hoteles en estas zonas.' },
+                  { id: 'faq2', question: '¿Cómo sabré si los servicios están confirmados?', answer: 'Una vez que realices tu reserva, recibirás una confirmación por correo electrónico o WhatsApp con todos los detalles del tour.' },
+                  { id: 'faq3', question: '¿Puedo cancelar o reprogramar mi tour?', answer: 'Sí, puedes cancelar o reprogramar tu tour. Te recomendamos hacerlo con al menos 24 horas de anticipación para evitar cargos.' },
+                  { id: 'faq4', question: '¿Qué pasa si llueve o hay mal clima?', answer: 'El tour se realiza con lluvia o sol. En caso de condiciones climáticas extremas que impidan el tour, se reprogramará sin costo adicional.' },
+                  { id: 'faq5', question: '¿El tour incluye almuerzo?', answer: 'No, el almuerzo no está incluido en el valor del tour. Sin embargo, habrá tiempo disponible para comprar comida durante el recorrido.' }
+                ].map((faq) => (
+                  <div key={faq.id} className="border border-card-border rounded-lg overflow-hidden">
+                    <button
+                      onClick={() => toggleFaq(faq.id)}
+                      className="w-full flex items-center justify-between p-4 text-left hover:bg-background-alt transition-colors"
+                    >
+                      <span className="font-medium text-foreground pr-4">{faq.question}</span>
+                      {expandedFaq === faq.id ? (
+                        <ChevronUp className="w-5 h-5 text-primary flex-shrink-0" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 text-primary flex-shrink-0" />
+                      )}
+                    </button>
+                    {expandedFaq === faq.id && (
+                      <div className="px-4 pb-4">
+                        <p className="text-foreground-muted">{faq.answer}</p>
                       </div>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">{item.activity}</h3>
-                      <p className="text-foreground-muted text-sm">{item.description}</p>
-                    </div>
+                    )}
                   </div>
                 ))}
               </div>
             </section>
 
-            {/* Included Services */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Servicios Incluidos</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {includedServices.map((service, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-foreground-muted">{service}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Recommendations */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Recomendaciones Generales</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {recommendations.map((rec, index) => (
-                  <div key={index} className="bg-card border border-card-border rounded-lg p-4">
-                    <h3 className="font-semibold text-foreground mb-2">{rec.title}</h3>
-                    <p className="text-foreground-muted text-sm">{rec.description}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Related Tours */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">También te Recomendamos...</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/vina-concha-toro'}>
-                  <img src={valparaisoImage} alt="Viña Concha y Toro Diurno" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">Viña Concha y Toro - Tour Diurno</h3>
-                    <p className="text-foreground-muted text-sm">La experiencia clásica de día en la viña más famosa de Chile</p>
-                  </div>
-                </div>
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/vina-santa-rita'}>
-                  <img src={valparaisoImage} alt="Viña Santa Rita" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">Viña Santa Rita</h3>
-                    <p className="text-foreground-muted text-sm">Otra experiencia vinícola premium en el Valle del Maipo</p>
-                  </div>
-                </div>
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/ruta-vino-valle-maipo'}>
-                  <img src="/images/tours/ruta-vino-valle-maipo/maipo-4.jpg" alt="Ruta del Vino Valle del Maipo" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">Ruta del Vino Valle del Maipo</h3>
-                    <p className="text-foreground-muted text-sm">Descubre múltiples viñas en el valle más prestigioso</p>
-                  </div>
-                </div>
-                <div className="bg-card border border-card-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                     onClick={() => window.location.href = '/tour/vinedo-haras-pirque'}>
-                  <img src={valparaisoImage} alt="Viñedo Haras de Pirque" className="w-full h-32 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold text-foreground mb-2">Viñedo Haras de Pirque</h3>
-                    <p className="text-foreground-muted text-sm">Experiencia boutique en viñedo exclusivo</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Policies and Conditions */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Políticas y Condiciones</h2>
-              <div className="bg-card border border-card-border rounded-lg p-6">
-                <div className="space-y-4 text-foreground-muted">
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Cancelaciones</h3>
-                    <p className="text-sm">Cancelación gratuita hasta 48 horas antes del tour nocturno. Cancelaciones con menos de 48 horas tendrán un cargo del 75%.</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Condiciones Climáticas</h3>
-                    <p className="text-sm">El tour nocturno se realiza solo con buen clima. En caso de lluvia o viento fuerte, se reprogramará sin costo adicional.</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Edad Mínima</h3>
-                    <p className="text-sm">Solo mayores de 18 años pueden participar en este tour nocturno debido a las degustaciones de alcohol.</p>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Cupos Limitados</h3>
-                    <p className="text-sm">Tour exclusivo con máximo 20 personas por grupo. Se recomienda reservar con al menos 7 días de anticipación.</p>
-                  </div>
-                </div>
-              </div>
-            </section>
           </div>
 
           {/* Sidebar */}
@@ -373,9 +421,18 @@ const TourVinaValparaiso = () => {
             {/* Booking Form */}
             <div className="bg-card border border-card-border rounded-xl p-6 sticky top-8">
               <div className="text-center mb-6">
-                <div className="text-3xl font-bold text-primary mb-2">CLP 125.000</div>
-                <div className="text-foreground-muted">por persona</div>
-                <div className="text-sm text-foreground-muted mt-1">Incluye almuerzo y entradas</div>
+                <div className="text-3xl font-bold text-primary mb-2">🎟️ Valores:</div>
+                <div className="space-y-2">
+                  <div className="text-xl font-semibold text-foreground">
+                    Adulto: <span className="text-primary">CLP 44.000</span>
+                  </div>
+                  <div className="text-lg text-foreground-muted">
+                    Niños: <span className="text-primary">CLP 22.000</span>
+                  </div>
+                  <div className="text-sm text-green-600">
+                    Niños menores de 3 años: Gratis
+                  </div>
+                </div>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -410,25 +467,46 @@ const TourVinaValparaiso = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="group-size" className="block text-sm font-medium text-foreground mb-2">
-                    Número de Personas
+                  <label htmlFor="adults" className="block text-sm font-medium text-foreground mb-2">
+                    Número de Adultos
                   </label>
                   <select
-                    id="group-size"
-                    value={groupSize}
-                    onChange={(e) => setGroupSize(e.target.value)}
+                    id="adults"
+                    value={adults}
+                    onChange={(e) => setAdults(e.target.value)}
                     className="w-full px-4 py-3 border border-card-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                     required
                   >
                     <option value="">Seleccionar cantidad</option>
-                    <option value="2">2 personas</option>
-                    <option value="4">4 personas</option>
-                    <option value="6">6 personas</option>
-                    <option value="8">8 personas</option>
-                    <option value="10">10 personas</option>
-                    <option value="12">12 personas</option>
-                    <option value="15">15 personas</option>
-                    <option value="20">20 personas</option>
+                    <option value="1">1 adulto</option>
+                    <option value="2">2 adultos</option>
+                    <option value="3">3 adultos</option>
+                    <option value="4">4 adultos</option>
+                    <option value="5">5 adultos</option>
+                    <option value="6">6 adultos</option>
+                    <option value="7">7 adultos</option>
+                    <option value="8">8 adultos</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="children" className="block text-sm font-medium text-foreground mb-2">
+                    Número de Niños
+                  </label>
+                  <select
+                    id="children"
+                    value={children}
+                    onChange={(e) => setChildren(e.target.value)}
+                    className="w-full px-4 py-3 border border-card-border rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  >
+                    <option value="">Seleccionar cantidad</option>
+                    <option value="0">Sin niños</option>
+                    <option value="1">1 niño</option>
+                    <option value="2">2 niños</option>
+                    <option value="3">3 niños</option>
+                    <option value="4">4 niños</option>
+                    <option value="5">5 niños</option>
+                    <option value="6">6 niños</option>
                   </select>
                 </div>
 

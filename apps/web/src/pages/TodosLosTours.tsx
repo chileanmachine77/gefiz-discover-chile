@@ -27,7 +27,7 @@ const TodosLosTours = () => {
       groupSize: '2-15 personas',
       rating: 4.9,
       reviews: 87,
-      price: 'CLP 65.000',
+      price: 'CLP 44.000',
       category: 'Panorámico',
       description: 'Disfruta de vistas espectaculares de la Cordillera de Los Andes con paisajes únicos.',
       type: 'mountain'
@@ -41,7 +41,7 @@ const TodosLosTours = () => {
       groupSize: '4-20 personas',
       rating: 4.8,
       reviews: 156,
-      price: 'CLP 75.000',
+      price: 'CLP 99.000',
       category: 'Aventura',
       description: 'Aventura completa en el parque de montaña más emocionante cerca de Santiago.',
       type: 'mountain'
@@ -55,7 +55,7 @@ const TodosLosTours = () => {
       groupSize: '2-25 personas',
       rating: 4.9,
       reviews: 203,
-      price: 'CLP 95.000',
+      price: 'CLP 99.000',
       category: 'Premium',
       description: 'Experiencia premium en el centro de esquí más famoso de Sudamérica con almuerzo gourmet.',
       type: 'mountain'
@@ -69,7 +69,7 @@ const TodosLosTours = () => {
       groupSize: '2-12 personas',
       rating: 4.7,
       reviews: 89,
-      price: 'CLP 80.000',
+      price: 'CLP 142.000',
       category: 'Deportes',
       description: 'Día completo de esquí en uno de los centros más populares de Chile.',
       type: 'mountain'
@@ -83,7 +83,7 @@ const TodosLosTours = () => {
       groupSize: '2-15 personas',
       rating: 4.6,
       reviews: 203,
-      price: 'CLP 80.000',
+      price: 'CLP 139.000',
       category: 'Deportes',
       description: 'Experiencia de esquí en Farellones para todos los niveles.',
       type: 'mountain'
@@ -97,7 +97,7 @@ const TodosLosTours = () => {
       groupSize: '2-18 personas',
       rating: 4.8,
       reviews: 167,
-      price: 'CLP 90.000',
+      price: 'CLP 191.000',
       category: 'Premium',
       description: 'Día de esquí en Valle Nevado, el centro de esquí más moderno de Chile.',
       type: 'mountain'
@@ -115,7 +115,7 @@ const TodosLosTours = () => {
       groupSize: '1-15 personas',
       rating: 4.9,
       reviews: 89,
-      price: 'CLP 35.000',
+      price: 'CLP 27.000',
       category: 'Turismo',
       description: 'Recorre los principales atractivos de Santiago con guía especializado.',
       type: 'santiago'
@@ -129,7 +129,7 @@ const TodosLosTours = () => {
       groupSize: '1-12 personas',
       rating: 4.7,
       reviews: 156,
-      price: 'CLP 125.000',
+      price: 'CLP 77.000',
       category: 'Aventura',
       description: 'Vista panorámica de Santiago desde sus miradores más emblemáticos.',
       type: 'santiago'
@@ -143,7 +143,7 @@ const TodosLosTours = () => {
       groupSize: '2-25 personas',
       rating: 4.6,
       reviews: 203,
-      price: 'CLP 125.000',
+      price: 'CLP 80.000',
       category: 'Familiar',
       description: 'Experiencia familiar única conociendo la fauna chilena y mundial.',
       type: 'santiago'
@@ -161,7 +161,7 @@ const TodosLosTours = () => {
       groupSize: '2-15 personas',
       rating: 4.7,
       reviews: 142,
-      price: 'CLP 85.000',
+      price: 'CLP 94.000',
       category: 'Costero',
       description: 'Visita la casa museo de Pablo Neruda en Isla Negra, Algarrobo y un viñedo costero.',
       type: 'vineyard'
@@ -175,7 +175,7 @@ const TodosLosTours = () => {
       groupSize: '2-20 personas',
       rating: 4.8,
       reviews: 178,
-      price: 'CLP 65.000',
+      price: 'CLP 119.000',
       category: 'Premium',
       description: 'Experiencia exclusiva en la viña premium de Concha y Toro.',
       type: 'vineyard'
@@ -189,7 +189,7 @@ const TodosLosTours = () => {
       groupSize: '2-16 personas',
       rating: 4.5,
       reviews: 98,
-      price: 'CLP 95.000',
+      price: 'CLP 182.000',
       category: 'Premium',
       description: 'Viñedos cerca del mar con vinos blancos excepcionales y vista al Pacífico.',
       type: 'vineyard'
@@ -203,7 +203,7 @@ const TodosLosTours = () => {
       groupSize: '2-20 personas',
       rating: 4.6,
       reviews: 156,
-      price: 'CLP 95.000',
+      price: 'CLP 91.000',
       category: 'Costero',
       description: 'Tour completo por Valparaíso patrimonio de la humanidad, Viña del Mar y viñedo.',
       type: 'vineyard'
@@ -217,7 +217,7 @@ const TodosLosTours = () => {
       groupSize: '2-12 personas',
       rating: 4.8,
       reviews: 189,
-      price: 'CLP 75.000',
+      price: 'CLP 137.000',
       category: 'Tradicional',
       description: 'Recorrido por 3 viñas del prestigioso Valle del Maipo con almuerzo incluido.',
       type: 'vineyard'
@@ -231,7 +231,7 @@ const TodosLosTours = () => {
       groupSize: '2-25 personas',
       rating: 4.7,
       reviews: 203,
-      price: 'CLP 45.000',
+      price: 'CLP 80.000',
       category: 'Premium',
       description: 'Visita la viña más famosa de Chile con cata de vinos premium.',
       type: 'vineyard'
@@ -245,7 +245,7 @@ const TodosLosTours = () => {
       groupSize: '2-18 personas',
       rating: 4.6,
       reviews: 156,
-      price: 'CLP 40.000',
+      price: 'CLP 68.200',
       category: 'Tradicional',
       description: 'Viña familiar con más de 150 años de tradición en el corazón de Santiago.',
       type: 'vineyard'
@@ -259,7 +259,7 @@ const TodosLosTours = () => {
       groupSize: '2-15 personas',
       rating: 4.8,
       reviews: 127,
-      price: 'CLP 65.000',
+      price: 'CLP 174.000',
       category: 'Premium',
       description: 'Una experiencia mágica en la viña Concha y Toro con cata de vinos bajo las estrellas.',
       type: 'vineyard'
@@ -273,7 +273,7 @@ const TodosLosTours = () => {
       groupSize: '2-20 personas',
       rating: 4.9,
       reviews: 89,
-      price: 'CLP 55.000',
+      price: 'CLP 68.200',
       category: 'Premium',
       description: 'Un viaje a la historia del vino chileno en una de las viñas más emblemáticas.',
       type: 'vineyard'
@@ -287,7 +287,7 @@ const TodosLosTours = () => {
       groupSize: '2-20 personas',
       rating: 4.7,
       reviews: 234,
-      price: 'CLP 48.000',
+      price: 'CLP 68.000',
       category: 'Premium',
       description: 'Descubre una de las viñas más antiguas de Chile con degustación incluida.',
       type: 'vineyard'
@@ -301,7 +301,7 @@ const TodosLosTours = () => {
       groupSize: '2-14 personas',
       rating: 4.8,
       reviews: 156,
-      price: 'CLP 85.000',
+      price: 'CLP 68.200',
       category: 'Boutique',
       description: 'Viña boutique con caballos de polo y vinos ultra premium.',
       type: 'vineyard'
@@ -319,7 +319,7 @@ const TodosLosTours = () => {
       groupSize: '2-15 personas',
       rating: 4.8,
       reviews: 142,
-      price: 'CLP 85.000',
+      price: 'CLP 94.000',
       category: 'Cultural',
       description: 'Visita la casa museo de Pablo Neruda en Isla Negra, Algarrobo y un viñedo costero.',
       type: 'costa'
@@ -333,7 +333,7 @@ const TodosLosTours = () => {
       groupSize: '2-20 personas',
       rating: 4.9,
       reviews: 198,
-      price: 'CLP 95.000',
+      price: 'CLP 91.000',
       category: 'Histórico',
       description: 'Tour completo por Valparaíso patrimonio de la humanidad, Viña del Mar y viñedo.',
       type: 'costa'
@@ -347,7 +347,7 @@ const TodosLosTours = () => {
       groupSize: '4-12 personas',
       rating: 4.7,
       reviews: 167,
-      price: 'CLP 125.000',
+      price: 'CLP 44.000',
       category: 'Costero',
       description: 'Descubre la ciudad jardín y el puerto histórico de Valparaíso.',
       type: 'costa'
